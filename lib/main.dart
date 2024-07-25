@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:unrespiro/constant.dart';
+import 'package:unrespiro/provider/actions/action_provider.dart';
+import 'package:unrespiro/provider/chronometer_provider/chronometer_provider.dart';
+import 'package:unrespiro/provider/dropdown/dropdown_provider.dart';
+import 'package:unrespiro/provider/matrics_progess/matrics_provider.dart';
+import 'package:unrespiro/provider/plan/plan_provider.dart';
+import 'package:unrespiro/provider/progress_bar/progress_bar.dart';
 import 'package:unrespiro/provider/theme/theme_provider.dart';
+import 'package:unrespiro/provider/timer_provider/timer_provider.dart';
+import 'package:unrespiro/provider/toggle/toggle_provider.dart';
 
 import 'model/res/routes/routes.dart';
 import 'model/res/routes/routes_name.dart';
@@ -21,6 +29,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => ActionProvider()),
+        ChangeNotifierProvider(create: (_) => ProgressModel()),
+        ChangeNotifierProvider(create: (_) => ToggleModel()),
+        ChangeNotifierProvider(create: (_) => PlanProvider()),
+        ChangeNotifierProvider(create: (_) => MatricsPercentageProvider()),
+        ChangeNotifierProvider(create: (_) => DropdownProvider()),
+        //ChangeNotifierProvider(create: (_) => CronometerProvider()),
+       // ChangeNotifierProvider(create: (_) => TimerProvider()),
       ],
       child: Consumer<ThemeProvider>(
        builder: (context,provider,child){
@@ -38,12 +54,14 @@ class MyApp extends StatelessWidget {
            darkTheme: ThemeData(
              primaryColor: primaryColor,
              useMaterial3: true,
+             scaffoldBackgroundColor: Colors.black,
              colorScheme: const ColorScheme.dark(
                primary: primaryColor,
                surface: Colors.black
              ),
            ),
-           initialRoute: RoutesName.splashScreen,
+           //initialRoute: RoutesName.splashScreen,
+           initialRoute: RoutesName.mainScreen,
            getPages: Routes.routes,
          );
        },

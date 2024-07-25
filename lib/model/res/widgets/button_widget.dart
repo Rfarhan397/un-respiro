@@ -8,9 +8,11 @@ import 'app_text.dart.dart';
 class ButtonWidget extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;
+  final IconData? icon;
   final double width, height;
   final double radius;
   final bool loader, oneColor;
+
   final Color textColor, borderColor, backgroundColor;
   final bool isShadow;
 
@@ -27,6 +29,7 @@ class ButtonWidget extends StatelessWidget {
     this.borderColor = primaryColor,
     this.backgroundColor = primaryColor,
     this.isShadow = true,
+    this.icon,
   }) : super(key: key);
 
   @override

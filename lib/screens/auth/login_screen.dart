@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 import 'package:unrespiro/model/res/widgets/app_text_field.dart';
+import 'package:unrespiro/screens/splash/permission_screen.dart';
 
 import '../../constant.dart';
 import '../../model/res/constant/app_assets.dart';
 import '../../model/res/constant/app_string.dart';
+import '../../model/res/routes/routes_name.dart';
 import '../../model/res/widgets/app_text.dart.dart';
 import '../../model/res/widgets/button_widget.dart';
 import '../../provider/theme/theme_provider.dart';
@@ -57,7 +59,10 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: Get.width * 0.020,),
               AppTextField(hintText: "mail"),
               SizedBox(height: Get.width * 0.070,),
-              ButtonWidget(text: "Login", onClicked: (){}, width: Get.width * 0.54, height: 50.0),
+              ButtonWidget(text: "Login", onClicked: (){
+                Get.toNamed(RoutesName.permissionScreen);
+
+              }, width: Get.width * 0.54, height: 50.0),
               const SizedBox(height: 10.0,),
               ButtonWidget(text: "Register", onClicked: (){},
                 width: Get.width * 0.54,

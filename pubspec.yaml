@@ -43,6 +43,10 @@ dependencies:
   cached_network_image: ^3.3.1
   google_fonts: ^6.2.1
   shared_preferences: ^2.2.3
+  syncfusion_flutter_charts: ^26.1.42
+  material_neumorphic_progress: ^1.1.3
+  percent_indicator: ^4.2.2
+
 
 dev_dependencies:
   flutter_test:
