@@ -42,16 +42,16 @@ class PermissionScreen extends StatelessWidget {
                   height: Get.width * 0.45,
                   child: Image.asset(_isDark ?  AppAssets.lockImage : AppAssets.lockImageL ,fit: BoxFit.contain,)),
               SizedBox(height: Get.width * 0.10,),
-              AppTextWidget(text: 'Permission Required',fontSize: 22.0,fontWeight: FontWeight.bold,),
+              AppTextWidget(text: 'Permission Required',fontSize: 18.0,fontWeight: FontWeight.bold,),
               SizedBox(height: Get.width * 0.10,),
-              const AppTextWidget(text: AppString.confirm_text,fontSize: 14.0,textAlign: TextAlign.center,),
+              const AppTextWidget(text: AppString.confirm_text,fontSize: 12.0,textAlign: TextAlign.center,),
               SizedBox(height: Get.width * 0.10,),
               const AppTextWidget(text: AppString.permissiom_text,fontWeight:FontWeight.bold,fontSize: 14.0,textAlign: TextAlign.center,),
               SizedBox(height: Get.width * 0.12,),
               ButtonWidget(
                   text: "Permission", onClicked: (){
                 Get.toNamed(RoutesName.mainScreen);
-              }, width: Get.width * 0.54, height: 50.0),
+              }, width: Get.width * 0.50, height: 40.0),
 
             ],
           ),

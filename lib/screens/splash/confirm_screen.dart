@@ -29,33 +29,35 @@ class ConfirmScreen extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Padding(
-          padding:  EdgeInsets.all(Get.width * 0.15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                 width: Get.width,
-                  height: Get.width * 0.8,
-                  child: Image.asset(AppAssets.mobileImage,fit: BoxFit.contain,)),
-               SizedBox(height: Get.width * 0.12,),
-              const AppTextWidget(text: AppString.confirm_text,fontSize: 14.0,textAlign: TextAlign.center,),
-               SizedBox(height: Get.width * 0.12,),
-              ButtonWidget(text: "Login", onClicked: (){
-                Get.toNamed(RoutesName.loginScreen);
-              }, width: Get.width * 0.54, height: 50.0),
-              const SizedBox(height: 10.0,),
-              ButtonWidget(text: "Register", onClicked: (){},
-                width: Get.width * 0.54,
-                height: 50.0,
-                borderColor: primaryColor,
-                oneColor: true,
-                isShadow: _isDark ? true : false,
-                textColor: _isDark ? Colors.white :Colors.black,
-               backgroundColor: _isDark ? darkGrey : Colors.white,
-              ),
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding:  EdgeInsets.all(Get.width * 0.15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                   width: Get.width,
+                    height: Get.width * 0.8,
+                    child: Image.asset(AppAssets.mobileImage,fit: BoxFit.contain,)),
+                 SizedBox(height: Get.width * 0.12,),
+                const AppTextWidget(text: AppString.confirm_text,fontSize: 14.0,textAlign: TextAlign.center,),
+                 SizedBox(height: Get.width * 0.12,),
+                ButtonWidget(text: "Login", onClicked: (){
+                  Get.toNamed(RoutesName.loginScreen);
+                }, width: Get.width * 0.54, height: 40.0),
+                const SizedBox(height: 10.0,),
+                ButtonWidget(text: "Register", onClicked: (){},
+                  width: Get.width * 0.54,
+                  height: 40.0,
+                  borderColor: primaryColor,
+                  oneColor: true,
+                  isShadow: _isDark ? true : false,
+                  textColor: _isDark ? Colors.white :Colors.black,
+                 backgroundColor: _isDark ? darkGrey : Colors.white,
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -10,13 +10,15 @@ import '../constant/app_assets.dart';
 class CustomAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Container(
         height: 500,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          color: AppColors.appBarColor,
+          color: _isDark? AppColors.appBarColor: AppColors.appPurpleColor,
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Column(
@@ -39,15 +41,17 @@ class CustomAlertDialog extends StatelessWidget {
             Expanded(
               child: RawScrollbar(
                 thumbVisibility: true,
-                thickness: 4.0,
+                thickness: 3.0,
                 radius: Radius.circular(10.0),
-                thumbColor: AppColors.appRedColor,
+                thumbColor: _isDark ?AppColors.appYellowColor:AppColors.appRedColor,
                 child: ListView(
                   children: [
                     buildStack(context, 'Instagram', AppAssets.insta,true),
                     buildStack(context, 'Tiktok', AppAssets.tiktok,false),
                     buildStack(context, 'X', AppAssets.x,true),
                     buildStack(context, 'Pinterest', AppAssets.pinterest,true),
+                    buildStack(context, 'Nombre', AppAssets.pinterest,true),
+                    buildStack(context, 'Nombre', AppAssets.pinterest,true),
                     buildStack(context, 'Nombre', AppAssets.pinterest,true),
                   ],
                 ),
@@ -115,7 +119,7 @@ class CustomAlertDialog extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
               ),
               child: CircleAvatar(
-                backgroundColor: Colors.black,
+                backgroundColor: _isDark ? Colors.black : Colors.white,
                 radius: 25.0,
                 child: Image.asset(
                   image,

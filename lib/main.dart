@@ -60,8 +60,7 @@ class MyApp extends StatelessWidget {
                surface: Colors.black
              ),
            ),
-           //initialRoute: RoutesName.splashScreen,
-           initialRoute: RoutesName.mainScreen,
+           initialRoute: RoutesName.loginScreen,
            getPages: Routes.routes,
          );
        },

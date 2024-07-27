@@ -11,8 +11,9 @@ class ClockScreen extends StatelessWidget {
     return Column(
       children: [
         Image.asset(AppAssets.clock),
+        SizedBox(height: 20,),
         ButtonWidget(text: 'Activate',
-            onClicked: (){}, width: 150, height: 40)
+            onClicked: (){}, width: 140, height: 40)
       ],
     );
   }

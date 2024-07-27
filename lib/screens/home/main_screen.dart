@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unrespiro/screens/focus/focus_ScreenO.dart';
+import 'package:unrespiro/screens/home/home_screen.dart';
 
 import '../../model/res/constant/app_assets.dart';
 import '../../model/res/constant/app_colors.dart';
@@ -17,7 +18,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  List<Widget> pages = [ FocusScreenO(), const Instagram(), MenuScreen()];
+  List<Widget> pages = [ FocusScreenO(), const HomeScreen(), MenuScreen()];
   int _selectedIndex = 0;
 
   @override
@@ -31,13 +32,16 @@ class _MainScreenState extends State<MainScreen> {
         children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
+        backgroundColor:  Colors.transparent,
+        elevation: 0,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Image.asset(
               AppAssets.logo,
               height: 30,
-              color: _selectedIndex == 0 ? (_isDark ? AppColors.appYellowColor : AppColors.appRedColor) : Colors.grey,
+              color: _selectedIndex == 0 ? (
+                  _isDark ? AppColors.appYellowColor : AppColors.appRedColor)
+                  :  _isDark ? Colors.grey :AppColors.appYellowColor,
             ),
             label: '',
           ),
@@ -45,15 +49,15 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(
               Icons.home_outlined,
               size: 30,
-              color: _selectedIndex == 1 ? (_isDark ? AppColors.appYellowColor : AppColors.appRedColor) : Colors.grey,
+              color: _selectedIndex == 1 ? (_isDark ? AppColors.appYellowColor : AppColors.appRedColor) : _isDark ? Colors.grey :AppColors.appYellowColor,
             ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              AppAssets.menu,
-              height: 30,
-              color: _selectedIndex == 2 ? (_isDark ? AppColors.appYellowColor : AppColors.appRedColor) : Colors.grey,
+            icon: Icon(
+              Icons.menu,
+              size: 30,
+              color: _selectedIndex == 2 ? (_isDark ? AppColors.appYellowColor : AppColors.appRedColor) :  _isDark ? Colors.grey :AppColors.appYellowColor,
             ),
             label: '',
           ),

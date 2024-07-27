@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
+import 'package:unrespiro/model/res/components/app_button_widget.dart';
+import 'package:unrespiro/model/res/components/appbar.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
 import 'package:unrespiro/model/res/routes/routes_name.dart';
 import 'package:unrespiro/provider/actions/action_provider.dart';
@@ -46,31 +48,42 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      appBar: AppBar(
-        title: Text(
-          'Home',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        actions: [
-          Switch(
-            value: themeProvider.isDarkMode,
-            onChanged: (value) {
-              themeProvider.toggleTheme();
-            },
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: AppTextWidget(
+      //     text: 'Home',fontSize: 18,),
+      //   centerTitle: true,
+      //   actions: [
+      //     Switch(
+      //       value: themeProvider.isDarkMode,
+      //       onChanged: (value) {
+      //         themeProvider.toggleTheme();
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(
             children: [
+              //appBar
               Padding(
                 padding: EdgeInsets.all(Get.width * 0.04,),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Row(
+                      children: [
+                        Image.asset(
+                          _isDark? AppAssets.backIconL:
+                          AppAssets.backIcon,height: 30,width: 30,),
+                        SizedBox(width: 130,),
+                        AppTextWidget(
+                          text: 'Home',
+                          fontSize: 18,
+                        ),
+                      ],
+                    ),
                     SizedBox(
                         width: Get.width,
                         height: Get.height * 0.4,
@@ -155,7 +168,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           borderRadius: BorderRadius.circular(40),
                                         ),
                                         child: CircleAvatar(
-                                          backgroundColor: Colors.white,
+                                          backgroundColor: _isDark
+                                              ? Colors.black
+                                              : Color(0xFFEDE7F6),
                                           radius: 30.0,
                                           child: Image.asset(
                                             AppAssets.insta,
@@ -225,7 +240,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                           borderRadius: BorderRadius.circular(40),
                                         ),
                                         child: CircleAvatar(
-                                          backgroundColor: Colors.white,
+                                          backgroundColor: _isDark
+                                              ? Colors.black
+                                              : Color(0xFFEDE7F6),
                                           radius: 30.0,
                                           child: Image.asset(
                                             AppAssets.tiktok,
@@ -300,7 +317,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         borderRadius: BorderRadius.circular(40),
                                       ),
                                       child: CircleAvatar(
-                                        backgroundColor: Colors.white,
+                                        backgroundColor: _isDark
+                                            ? Colors.black
+                                            : Color(0xFFEDE7F6),
                                         radius: 30.0,
                                         child: Image.asset(
                                           AppAssets.x,
@@ -370,7 +389,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         borderRadius: BorderRadius.circular(40),
                                       ),
                                       child: CircleAvatar(
-                                        backgroundColor: Colors.white,
+                                        backgroundColor: _isDark
+                                            ? Colors.black
+                                            : Color(0xFFEDE7F6),
                                         radius: 30.0,
                                         child: Image.asset(
                                           AppAssets.pinterest,
@@ -407,13 +428,16 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, provider, child) {
             return Visibility(
               visible: provider.isVisible,
-              child: Align(
-                alignment: Alignment.topRight,
+              child: Positioned(
+                top: 70,
+                left: 130,
                 child: Container(
                   width: 250,
                   height: 250,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.8),
+                    color: _isDark
+                        ? Colors.black.withOpacity(0.8)
+                        : Color(0xffDDD3E6).withOpacity(0.5),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Stack(
@@ -427,7 +451,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           child: Icon(
                             Icons.close,
-                            color: Colors.white,
+                            color: _isDark
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
                       ),
@@ -435,16 +461,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(
-                            Icons.card_giftcard,
+                            Icons.card_giftcard_outlined,
                             size: 60,
                             color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
                           ),
                           SizedBox(height: 15),
                           Text(
-                            'Gana un regalo',
+                            'Win a gift',
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.white,
+                              color: _isDark? Colors.white:Colors.black,
                             ),
                           ),
                           SizedBox(height: 10),
@@ -452,11 +478,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding:
                             const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Text(
-                              'Explicación del sistema de recompensas para los usuarios',
+                              'Explanation of the reward system for users',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.white,
+                                color: _isDark? Colors.white:Colors.black,
                               ),
                             ),
                           ),

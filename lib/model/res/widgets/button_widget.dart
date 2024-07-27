@@ -7,6 +7,7 @@ import 'app_text.dart.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
+  final double textSize;
   final VoidCallback onClicked;
   final IconData? icon;
   final double width, height;
@@ -19,6 +20,7 @@ class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
     Key? key,
     required this.text,
+    this.textSize = 15,
     required this.onClicked,
     required this.width,
     required this.height,
@@ -43,7 +45,11 @@ class ButtonWidget extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius),
-          border: isDarkMode ? Border.all(color: Colors.transparent,width: 0.0) : Border.all(width: oneColor ? 1.0 :0.0,color: oneColor ? borderColor :Colors.transparent),
+          border: isDarkMode ? Border.all(
+
+              color: Colors.transparent,width: 0.0)
+              :
+          Border.all(width: oneColor ? 1.0 :0.0,color: oneColor ? borderColor :Colors.transparent),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -69,7 +75,7 @@ class ButtonWidget extends StatelessWidget {
             : Center(
           child: AppTextWidget(
             text: text,
-            fontSize: 15.0,
+            fontSize: textSize,
             color: textColor,
             fontWeight: FontWeight.w900,
           ),

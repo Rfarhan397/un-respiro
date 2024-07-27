@@ -29,7 +29,7 @@ class MetricsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              AppbarWidget(text: 'Matrics'),
+              AppbarWidget(text: 'Matrics',icon: Icons.arrow_back_ios,),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(

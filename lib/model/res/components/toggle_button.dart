@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:unrespiro/constant.dart';
+import 'package:unrespiro/model/res/constant/app_colors.dart';
 
+import '../../../provider/theme/theme_provider.dart';
 import '../../../provider/toggle/toggle_provider.dart';
 
 class ToggleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
     var toggleModel = Provider.of<ToggleModel>(context);
     return SizedBox(
       width: Get.width * 0.6,
@@ -18,12 +23,12 @@ class ToggleButton extends StatelessWidget {
               onTap: () {
                 if (toggleModel.isCronometer) toggleModel.toggle();
               },
-              child: Container(
+              child:  Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      toggleModel.isCronometer ? Colors.black : Color(0xffFFCC38),
-                      toggleModel.isCronometer ? Colors.black : Color(0xffFF5000),
+                      !toggleModel.isCronometer  ? _isDark ?  Color(0xffFFCC38) :  Color(0xffFF5000) : _isDark ?  AppColors.appBlackColor :  AppColors.appDarkPurpleColor ,
+                      !toggleModel.isCronometer  ? _isDark ?  Color(0xffFF5000) : lightPurpleColor :     _isDark ?  AppColors.appBlackColor :  AppColors.appDarkPurpleColor,
                     ],
                   ),
                   borderRadius: BorderRadius.horizontal(
@@ -35,7 +40,7 @@ class ToggleButton extends StatelessWidget {
                   child: Text(
                     'Timer',
                     style: TextStyle(
-                      color: toggleModel.isCronometer ? Colors.white : Colors.black,
+                      color: _isDark ? Colors.white : !toggleModel.isCronometer ?  Colors.white : lightPurpleColor,
                     ),
                   ),
                 ),
@@ -51,8 +56,8 @@ class ToggleButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      toggleModel.isCronometer ? Color(0xffFFCC38) : Colors.black,
-                      toggleModel.isCronometer ? Color(0xffFF5000) : Colors.black,
+                      toggleModel.isCronometer  ? _isDark ?  Color(0xffFFCC38) :  Color(0xffFF5000) : _isDark ?  AppColors.appBlackColor :  AppColors.appDarkPurpleColor ,
+                      toggleModel.isCronometer  ? _isDark ?  Color(0xffFF5000) : lightPurpleColor :     _isDark ?  AppColors.appBlackColor :  AppColors.appDarkPurpleColor,
                     ],
                   ),
                   borderRadius: BorderRadius.horizontal(
@@ -64,7 +69,7 @@ class ToggleButton extends StatelessWidget {
                   child: Text(
                     'Cronometer',
                     style: TextStyle(
-                      color: toggleModel.isCronometer ? Colors.black : Colors.white,
+                      color: _isDark ? Colors.white : toggleModel.isCronometer ?  Colors.white : lightPurpleColor,
                     ),
                   ),
                 ),

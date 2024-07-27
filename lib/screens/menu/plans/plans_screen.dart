@@ -5,6 +5,7 @@ import 'package:unrespiro/model/res/components/appbar.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
 import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
 import 'package:unrespiro/model/res/widgets/button_widget.dart';
+import 'package:unrespiro/provider/theme/theme_provider.dart';
 
 import '../../../provider/plan/plan_provider.dart';
 
@@ -14,168 +15,187 @@ class PlansScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final planProvider = Provider.of<PlanProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
     final selectedPlan = planProvider.selectedPlan;
     return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
+        body: SafeArea(
+            child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AppbarWidget(
+                text: 'Plans',
+                icon: Icons.arrow_back_ios,
+                onTap: (){Get.back();},
+                textColor: Colors.black,
+                secondColorGradient: _isDark ?AppColors.appBarColor:AppColors.appDarkPurpleColor,
+                color: _isDark
+                    ? AppColors.appBarColor
+                    : AppColors.appDarkPurpleColor,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: Get.height / 2.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: _isDark
+                        ? AppColors.appBarColor
+                        : AppColors.appDarkPurpleColor,
+                  ),
+                  child: Row(
                     children: [
-            AppbarWidget(text: 'Plans',),
-            SizedBox(height: 30,),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                height: Get.height/2.3,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.appBarColor,
+                      Expanded(
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 38.0),
+                        child: Column(
+                          children: [
+                            AppTextWidget(
+                              text: 'Free',
+                              color: _isDark
+                                  ? AppColors.appBarColor
+                                  : AppColors.appRedColor,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(height: 20),
+                            buildFreePaid(Icons.check, Colors.green,
+                                'breathing exercise'),
+                            buildFreePaid(
+                                Icons.check, Colors.green, 'Unlimited Apps'),
+                            buildFreePaid(
+                                Icons.close, Colors.red, 'Lorem ispum'),
+                            buildFreePaid(
+                                Icons.close, Colors.red, 'Lorem ispum'),
+                            buildFreePaid(
+                                Icons.close, Colors.red, 'Lorem ispum'),
+                          ],
+                        ),
+                      )),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 40),
+                        width: 1,
+                        height: Get.height,
+                        color: Colors.grey,
+                      ),
+                      Expanded(
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 38.0),
+                        child: Column(
+                          children: [
+                            AppTextWidget(
+                              text: 'Paid',
+                              fontSize: 18,
+                              color: _isDark
+                                  ? AppColors.appBarColor
+                                  : AppColors.appRedColor,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(height: 20),
+                            buildFreePaid(Icons.check, Colors.green,
+                                'breathing exercise'),
+                            buildFreePaid(
+                                Icons.check, Colors.green, 'Unlimited Apps'),
+                            buildFreePaid(
+                                Icons.close, Colors.red, 'Lorem ispum'),
+                            buildFreePaid(
+                                Icons.close, Colors.red, 'Lorem ispum'),
+                            buildFreePaid(
+                                Icons.close, Colors.red, 'Lorem ispum'),
+                          ],
+                        ),
+                      )),
+                    ],
+                  ),
                 ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 50),
                 child: Row(
                   children: [
-                    Expanded(child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 38.0),
-                      child: Column(children: [
-                        AppTextWidget(text: 'Free',fontSize: 18,fontWeight: FontWeight.bold,),
-                        SizedBox(height: 20),
-                        buildFreePaid(Icons.check,Colors.green,'breathing exercise'),
-                        buildFreePaid(Icons.check,Colors.green,'Unlimited Apps'),
-                        buildFreePaid(Icons.close,Colors.red,'Lorem ispum'),
-                        buildFreePaid(Icons.close,Colors.red,'Lorem ispum'),
-                        buildFreePaid(Icons.close,Colors.red,'Lorem ispum'),
-                      ],),
-                    )),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 40),
-                      width: 1,
-                      height: Get.height,
-                      color: Colors.grey,
+                    _buildPlanContainer(
+                      context,
+                      planProvider,
+                      selectedPlan,
+                      1,
+                      'Monthly Plan',
+                      '\$00.00',
+                      'Per month',
                     ),
-                    Expanded(child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 38.0),
-                      child: Column(children: [
-                        AppTextWidget(text: 'Paid',fontSize: 18,fontWeight: FontWeight.bold,),
-                        SizedBox(height: 20),
-                        buildFreePaid(Icons.check,Colors.green,'breathing exercise'),
-                        buildFreePaid(Icons.check,Colors.green,'Unlimited Apps'),
-                        buildFreePaid(Icons.close,Colors.red,'Lorem ispum'),
-                        buildFreePaid(Icons.close,Colors.red,'Lorem ispum'),
-                        buildFreePaid(Icons.close,Colors.red,'Lorem ispum'),
-                      ],),
-                    )),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    _buildPlanContainer(
+                      context,
+                      planProvider,
+                      selectedPlan,
+                      2,
+                      'Yearly Plan',
+                      '\$00.00',
+                      'Per year',
+                    ),
                   ],
                 ),
               ),
-
-            ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 40),
-                        child: Row(
-                          children: [
-                            _buildPlanContainer(
-                              context,
-                              planProvider,
-                              selectedPlan,
-                              1,
-                              'Monthly Plan',
-                              '\$00.00',
-                              'Per month',
-                            ),
-                            // Container(
-                            //   height: Get.height/7,
-                            //   width: Get.width/3,
-                            //   decoration: BoxDecoration(
-                            //     borderRadius: BorderRadius.circular(10),
-                            //     color: AppColors.appBarColor,
-                            //   ),
-                            //   child: Column(
-                            //     children: [
-                            //       Align(
-                            //         alignment: Alignment.centerRight,
-                            //         child: Radio.adaptive(value: 1,
-                            //             groupValue: site,
-                            //             activeColor: AppColors.appYellowColor,
-                            //             onChanged: (site){}),
-                            //       ),
-                            //       AppTextWidget(text: 'Monthly Plan'),
-                            //       AppTextWidget(text: "\$00.00"),
-                            //       AppTextWidget(text: "Per month"),
-                            //     ],
-                            //   ),
-                            // ),
-                            SizedBox(width: 30,),
-                            _buildPlanContainer(
-                              context,
-                              planProvider,
-                              selectedPlan,
-                              2,
-                              'Yearly Plan',
-                              '\$00.00',
-                              'Per year',
-                            ),
-                            // Container(
-                            //   height: Get.height/7,
-                            //   width: Get.width/3,
-                            //   decoration: BoxDecoration(
-                            //     borderRadius: BorderRadius.circular(10),
-                            //     color: AppColors.appBarColor,
-                            //   ),
-                            //   child: Column(
-                            //     children: [
-                            //       Align(
-                            //         alignment: Alignment.centerRight,
-                            //         child: Radio.adaptive(value: 1,
-                            //             groupValue: site,
-                            //
-                            //             activeColor: AppColors.appYellowColor,
-                            //             onChanged: (site){}),
-                            //       ),
-                            //       AppTextWidget(text: 'Yearly Plan'),
-                            //       AppTextWidget(text: "\$00.00"),
-                            //       AppTextWidget(text: "Per year"),
-                            //     ],
-                            //   ),
-                            // ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 30,),
-                      ButtonWidget(text: 'Select', onClicked: (){},
-                          width: 120, height: 40)
-                    ],
-                  ),
-          ))
-    );
+              SizedBox(
+                height: 30,
+              ),
+              ButtonWidget(
+                  text: 'Select', onClicked: () {}, width: 150, height: 40),
+              SizedBox(height: 50,),
+            ],
+          ),
+        )));
   }
 
-  Padding buildFreePaid( IconData icon,var color,String text) =>
-      Padding(
-    padding: const EdgeInsets.all(12.0),
-    child: Row(children: [
-      Icon(icon,color: color,),
-      SizedBox(width: 10,),
-      AppTextWidget(text: text,
-        fontSize: 14,),],),);
+  Padding buildFreePaid(IconData icon, var color, String text) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: color,
+              size: 20,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            AppTextWidget(
+              text: text,
+              fontSize: 14,
+            ),
+          ],
+        ),
+      );
+
   Widget _buildPlanContainer(
-      BuildContext context,
-      PlanProvider planProvider,
-      int selectedPlan,
-      int planValue,
-      String title,
-      String price,
-      String duration,
-      ) {
+    BuildContext context,
+    PlanProvider planProvider,
+    int selectedPlan,
+    int planValue,
+    String title,
+    String price,
+    String duration,
+  ) {
     final isSelected = selectedPlan == planValue;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
 
     return GestureDetector(
       onTap: () => planProvider.selectPlan(planValue),
       child: Container(
-        height: Get.height / 7,
+        padding: EdgeInsets.only(bottom: 10),
+        height: Get.height / 6,
         width: Get.width / 3,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: AppColors.appBarColor,
+          color: _isDark ? AppColors.appBarColor : AppColors.appDarkPurpleColor,
           border: Border.all(
-            color: isSelected ? AppColors.appYellowColor : Colors.transparent,
+            color: isSelected ? _isDark ? AppColors.appYellowColor:AppColors.appRedColor :  Colors.transparent,
             width: 2,
           ),
         ),
@@ -187,7 +207,7 @@ class PlansScreen extends StatelessWidget {
               child: Radio(
                 value: planValue,
                 groupValue: selectedPlan,
-                activeColor: AppColors.appYellowColor,
+                activeColor: _isDark ? AppColors.appYellowColor:AppColors.appRedColor,
                 onChanged: (int? value) {
                   if (value != null) {
                     planProvider.selectPlan(value);
@@ -195,9 +215,9 @@ class PlansScreen extends StatelessWidget {
                 },
               ),
             ),
-            AppTextWidget(text: title),
-            AppTextWidget(text: price),
-            AppTextWidget(text: duration),
+            AppTextWidget(text: title,fontSize: 14),
+            AppTextWidget(text: price,fontSize: 16,),
+            AppTextWidget(text: duration,fontSize: 12,),
           ],
         ),
       ),

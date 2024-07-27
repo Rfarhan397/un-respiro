@@ -37,8 +37,8 @@ final bool obscureText;
   Widget build(BuildContext context) {
     final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return TextFormField(
-      style: const TextStyle(
-        color: AppColors.appBlackColor,
+    style:  TextStyle(
+        color: Colors.white,
       ),
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
@@ -49,6 +49,7 @@ final bool obscureText;
       cursorColor: Colors.black,
       obscureText: obscureText,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 20),
         suffixIcon: suffixIcon,
         hintText: hintText,
         filled: true,
@@ -72,9 +73,10 @@ final bool obscureText;
           borderRadius: BorderRadius.circular(radius ?? 50),
           borderSide:  BorderSide(color: isDarkMode ? Colors.white : primaryColor),
         ),
-        fillColor: isDarkMode ? darkGrey : Colors.white,
+        fillColor: isDarkMode ? darkGrey : Colors.orangeAccent.withOpacity(0.1),
         focusColor: Colors.blueGrey,
-        hintStyle: const TextStyle(fontSize: 12.0, color: Colors.grey),
+        hintStyle:  TextStyle(fontSize: 12.0,
+            color: isDarkMode ? Colors.white:Colors.black),
       ),
     );
   }

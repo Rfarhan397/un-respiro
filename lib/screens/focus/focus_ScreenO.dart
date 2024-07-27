@@ -29,7 +29,8 @@ class _FocusScreenOState extends State<FocusScreenO> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          elevation: 0,
+          backgroundColor: _isDark ?  AppColors.appBarColor:AppColors.appPurpleColor ,
           title: AppTextWidget(
             text: 'Focus Mode',
             fontSize: 16,
@@ -47,7 +48,7 @@ class _FocusScreenOState extends State<FocusScreenO> {
         body: SingleChildScrollView(
           child: Container(
             width: double.infinity,
-            decoration: BoxDecoration(color: Colors.black),
+            decoration: BoxDecoration(color: _isDark ? Colors.black : Colors.white),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +74,13 @@ class _FocusScreenOState extends State<FocusScreenO> {
                         SizedBox(
                           height: 20,
                         ),
-                        ClockScreen(),
+                        Image.asset(
+                          _isDark ? AppAssets.clock:AppAssets.clock1,
+                          height: 250,),
+                        SizedBox(height: 50,),
+                        ButtonWidget(text: 'Activate',
+                            onClicked: (){}, width: 140, height: 40)
+                        //ClockScreen(),
                         //NumbersButton(),
                       ],
                     ),
@@ -92,6 +99,8 @@ class _FocusScreenOState extends State<FocusScreenO> {
                           child: AppTextWidget(
                         text: 'Registered applications',
                         fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: _isDark ? Colors.white: Colors.black,
                       )),
                       SizedBox(
                         height: 20,
@@ -136,6 +145,8 @@ class _FocusScreenOState extends State<FocusScreenO> {
 
 
   Stack buildLogo(String image, bool isCheck, String text) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -146,13 +157,18 @@ class _FocusScreenOState extends State<FocusScreenO> {
             Container(
               height: 60,
               width: 60,
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Color(0xff111111)),
-              child: Image.asset(
-                image,
-                width: 120,
-                height: 120,
+                  color: _isDark ? AppColors.appBarColor : AppColors.appDarkPurpleColor),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  image,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             SizedBox(
@@ -162,10 +178,12 @@ class _FocusScreenOState extends State<FocusScreenO> {
                 width: 80,
                 height: 30,
                 decoration: BoxDecoration(
-                  color: Color(0xff111111),
+                  color: _isDark? Color(0xff111111):AppColors.appDarkPurpleColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Center(child: AppTextWidget(text: text))),
+                child: Center(child: AppTextWidget(
+                    color: _isDark ? Colors.white: Colors.black,
+                    text: text))),
           ],
         ),
         // Green Check Mark
@@ -174,13 +192,14 @@ class _FocusScreenOState extends State<FocusScreenO> {
           left: 3,
           child: Container(
             decoration: BoxDecoration(
-                color: isCheck ? Colors.green : Colors.white,
+                color: isCheck ? Colors.green : _isDark? Colors.white: Colors.grey,
                 borderRadius: BorderRadius.circular(10)),
             width: 20,
             height: 20,
             child: Icon(
               Icons.check,
               size: 18,
+              color: isCheck ?Colors.white : _isDark ? Colors.white: Colors.grey,
             ),
           ),
         ),

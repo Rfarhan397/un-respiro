@@ -1,28 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
 import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
 
+import '../../../provider/theme/theme_provider.dart';
+
 class AppbarWidget extends StatelessWidget {
   final String text;
-  final Color color;
+  final IconData? icon;
+  final VoidCallback? onTap;
+  final Color color,textColor,secondColorGradient;
    double bottomLeft,bottomRight,fontSize;
    double? width,height;
    bool isGradient;
    AppbarWidget({super.key,
      required this.text,
+     this.icon,
      this.color = AppColors.appBarColor,
+     this.secondColorGradient = AppColors.appBarColor,
+     this.textColor = Colors.grey,
      this.bottomLeft = 80,
      this.bottomRight = 80,
      this.fontSize = 18,
      this.isGradient = false,
      this.height,
      this.width,
+     this.onTap,
    });
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
+
     return Container(
       height: height ?? 100,
       width: width ?? Get.width,
@@ -30,24 +42,31 @@ class AppbarWidget extends StatelessWidget {
       decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              isGradient ? Colors.red : color,
-              isGradient ? Colors.yellow : color,
+              isGradient ?  Colors.red : color,
+              isGradient ? Colors.yellow : secondColorGradient,
             ]
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black,
-              offset: Offset(2, 2),
-              blurRadius: 20,
-              spreadRadius: 10,
-            )
-          ],
           borderRadius: BorderRadius.only(
 
               bottomLeft: Radius.circular(bottomLeft,),
               bottomRight: Radius.circular(bottomRight))
       ),
-      child: AppTextWidget(text:text ?? "",fontSize: fontSize,textAlign: TextAlign.center,)
+      child: Padding(
+        padding: const EdgeInsets.only(top: 30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(width: 20,),
+            GestureDetector(onTap:onTap,
+                child: Icon(icon,size: 20,)),
+            SizedBox(width: Get.width/3.3,),
+            AppTextWidget(
+              color: textColor,
+              text:text ?? "",fontSize: fontSize,textAlign: TextAlign.center,),
+          ],
+        ),
+      )
     );
   }
 }
