@@ -19,17 +19,17 @@ class PermissionScreen extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
     return  Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Theme Provider'),
-        actions: [
-          Switch(
-            value: themeProvider.isDarkMode,
-            onChanged: (value) {
-              themeProvider.toggleTheme();
-            },
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   title: Text('Flutter Theme Provider'),
+      //   actions: [
+      //     Switch(
+      //       value: themeProvider.isDarkMode,
+      //       onChanged: (value) {
+      //         themeProvider.toggleTheme();
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: SafeArea(
         child: Padding(
           padding:  EdgeInsets.all(Get.width * 0.15),

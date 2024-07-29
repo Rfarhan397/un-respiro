@@ -16,11 +16,13 @@ class CartesianChart extends StatefulWidget {
 
 class _CartesianChartState extends State<CartesianChart> {
   List<_SalesData> data = [
-    _SalesData('Mon', 25),
+    _SalesData('Mon', 20),
     _SalesData('Tues', 10),
     _SalesData('Wedn', 15),
     _SalesData('thurs', 7),
-    _SalesData('Fri', 40)
+    _SalesData('Fri', 30),
+    _SalesData('Sat', 15),
+    _SalesData('Sun', 45),
   ];
 
   @override
@@ -45,15 +47,15 @@ class _CartesianChartState extends State<CartesianChart> {
       ),
       series: <CartesianSeries<dynamic, dynamic>>[
         SplineSeries<_SalesData, String>(
-          color: Colors.white.withOpacity(0.8),
+          color: _isDark ?  AppColors.appYellowColor:Colors.white,
           width: 2, // Line width
           dataSource: data,
           xValueMapper: (_SalesData sales, _) => sales.year,
           yValueMapper: (_SalesData sales, _) => sales.sales,
-          name: widget.time,
+          //name: widget.time,
           dataLabelSettings: DataLabelSettings(
             isVisible: true,
-            textStyle: TextStyle(color: _isDark ? Color(0xff333333) : Colors.white), // Data label text color
+            textStyle: TextStyle(color:  _isDark ? Color(0xff333333) :Colors.white), // Data label text color
           ),
         ),
       ],

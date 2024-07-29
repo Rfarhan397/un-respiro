@@ -32,13 +32,24 @@ class Instagram extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        // appBar: AppBar(
+        //   title: Text('Flutter Theme Provider'),
+        //   actions: [
+        //     Switch(
+        //       value: themeProvider.isDarkMode,
+        //       onChanged: (value) {
+        //         themeProvider.toggleTheme();
+        //       },
+        //     ),
+        //   ],
+        // ),
         body: SingleChildScrollView(
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: _isDark
-                  ? LinearGradient(colors: [Colors.black, Colors.black])
-                  : LinearGradient(
+                  ? const LinearGradient(colors: [Colors.black, Colors.black])
+                  : const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [Color(0xffFF5000), Color(0xff8C90E7)],
@@ -60,7 +71,7 @@ class Instagram extends StatelessWidget {
                             height: 30,
                             width: 30,
                           ),
-                          SizedBox(width: 100),
+                          const SizedBox(width: 100),
                           AppTextWidget(
                             text: 'Applications',
                             fontSize: 18,
@@ -68,38 +79,38 @@ class Instagram extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             Icons.arrow_back_ios,
                             size: 18,
-                            color: _isDark ? Color(0xff363636) : Colors.white,
+                            color: _isDark ? const Color(0xff363636) : Colors.white,
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Container(
                             height: 40,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: _isDark ? Color(0xff111111) : Colors.white,
+                              color: _isDark ? const Color(0xff111111) : Colors.white,
                             ),
                             child: Image.asset(AppAssets.insta),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 18,
-                            color: _isDark ? Color(0xff363636) : Colors.white,
+                            color: _isDark ? const Color(0xff363636) : Colors.white,
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
-                      AppTextWidget(
+                      const SizedBox(height: 10),
+                      const AppTextWidget(
                         text: 'Instagram',
                         color: Colors.white,
                       ),
-                      CartesianChart(
+                      const CartesianChart(
                         title: 'Time spent on Instagram',
                         time: 'Time',
                       ),
@@ -110,7 +121,7 @@ class Instagram extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: _isDark ? Colors.black : Colors.white,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(50),
                       topRight: Radius.circular(50),
                     ),
@@ -126,10 +137,10 @@ class Instagram extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ListView(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           children: progressData.keys.map((day) {
                             final duration = progressData[day]!;
                             final hours = duration.inHours;
@@ -158,12 +169,12 @@ class Instagram extends StatelessWidget {
                                       minHeight: 15,
                                     ),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Text(
                                     '${hours}h ${minutes}min',
                                     style: TextStyle(
                                       color: _isDark
-                                          ? Colors.grey
+                                          ? Color(0xff333333)
                                           : AppColors.appPrimaryColor,
                                     ),
                                   ),
@@ -172,7 +183,7 @@ class Instagram extends StatelessWidget {
                             );
                           }).toList(),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         Container(
                           width: 120,
                           decoration: _isDark
@@ -181,7 +192,7 @@ class Instagram extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                           )
                               : BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               stops: [0.0, 1.0],
@@ -189,8 +200,8 @@ class Instagram extends StatelessWidget {
                             ),
                             borderRadius: BorderRadius.circular(25),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Icon(
