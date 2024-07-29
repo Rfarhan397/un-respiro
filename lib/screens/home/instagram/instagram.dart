@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_neumorphic_progress/material_neumorphic_progress.dart';
 import 'package:provider/provider.dart';
+import 'package:unrespiro/constant.dart';
 import 'package:unrespiro/model/res/constant/app_assets.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
 import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
@@ -26,218 +27,192 @@ class Instagram extends StatelessWidget {
       _SalesData('May', 40)
     ];
     final progressData = context.watch<ProgressModel>().progress;
-
-
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
+
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   actions: [
-        //     Switch(
-        //       value: themeProvider.isDarkMode,
-        //       onChanged: (value) {
-        //         themeProvider.toggleTheme();
-        //       },
-        //     ),
-        //   ],
-        // ),
-        body: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
+        body: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
               gradient: _isDark
-                  ? LinearGradient(colors: [
-                      Colors.black,
-                      Colors.black,
-                    ])
+                  ? LinearGradient(colors: [Colors.black, Colors.black])
                   : LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                          Color(0xffFF5000),
-                          Color(0xff8C90E7),
-                        ])),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-
-              Container(
-                color: Colors.transparent,
-                child: Expanded(
-                  flex: 5,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0xffFF5000), Color(0xff8C90E7)],
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20, vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset(
+                            _isDark ? AppAssets.backIconL : AppAssets.backIcon,
+                            height: 30,
+                            width: 30,
+                          ),
+                          SizedBox(width: 100),
+                          AppTextWidget(
+                            text: 'Applications',
+                            fontSize: 18,
+                            color: _isDark ? Colors.black : Colors.white,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.arrow_back_ios,
+                            size: 18,
+                            color: _isDark ? Color(0xff363636) : Colors.white,
+                          ),
+                          SizedBox(width: 20),
+                          Container(
+                            height: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: _isDark ? Color(0xff111111) : Colors.white,
+                            ),
+                            child: Image.asset(AppAssets.insta),
+                          ),
+                          SizedBox(width: 20),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 18,
+                            color: _isDark ? Color(0xff363636) : Colors.white,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      AppTextWidget(
+                        text: 'Instagram',
+                        color: Colors.white,
+                      ),
+                      CartesianChart(
+                        title: 'Time spent on Instagram',
+                        time: 'Time',
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: _isDark ? Colors.black : Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50),
+                    ),
+                  ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.all(40.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              _isDark? AppAssets.backIconL:
-                              AppAssets.backIcon,height: 30,width: 30,),
-                            SizedBox(width: 100,),
-                            AppTextWidget(
-                              text: 'Applications',
-                              fontSize: 18,
-                            ),
-                          ],
+                        Text(
+                          'Time Saved',
+                          style: TextStyle(
+                            color: _isDark ? Colors.white : AppColors.appRedColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        SizedBox(height: 15,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.arrow_back_ios,
-                              size: 18,
-                              color: _isDark ? Color(0xff363636) : Colors.white,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Container(
-                              height: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: _isDark ? Color(0xff111111) : Colors.white,
+                        SizedBox(height: 10),
+                        ListView(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          children: progressData.keys.map((day) {
+                            final duration = progressData[day]!;
+                            final hours = duration.inHours;
+                            final minutes = duration.inMinutes % 60;
+                            final totalMinutes = duration.inMinutes;
+
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 90,
+                                    child: Text(
+                                      '$day:',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: _isDark
+                                            ? Colors.white
+                                            : AppColors.appRedColor,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: GradientProgressIndicator(
+                                      value: totalMinutes / 80.0,
+                                      minHeight: 15,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    '${hours}h ${minutes}min',
+                                    style: TextStyle(
+                                      color: _isDark
+                                          ? Colors.grey
+                                          : AppColors.appPrimaryColor,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              child: Image.asset(AppAssets.insta),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              size: 18,
-                              color: _isDark ? Color(0xff363636) : Colors.white,
-                            ),
-                          ],
+                            );
+                          }).toList(),
                         ),
-                        SizedBox(
-                          height: 10,
+                        SizedBox(height: 10),
+                        Container(
+                          width: 120,
+                          decoration: _isDark
+                              ? BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(25),
+                          )
+                              : BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              stops: [0.0, 1.0],
+                              colors: [Color(0xffFF5000), Color(0xff7F96FF)],
+                            ),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.delete_forever_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                                SizedBox(width: 5),
+                                Text(
+                                  'Eliminate',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        AppTextWidget(
-                          text:
-                          'Instagram',
-                          color: Colors.white,
-                        ),
-                        CartesianChart(title: 'Time spent on Instagram',time: 'Time',)
                       ],
                     ),
                   ),
                 ),
-              ),
-              //const SizedBox(height: 20),
-              Expanded(
-                  flex: 2,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Container(
-                      width: double.infinity,
-                      decoration:  BoxDecoration(
-                        color: _isDark ?  Colors.black : Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(40.0),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Time Saved',
-                              style: TextStyle(
-                                  color: _isDark
-                                      ? Colors.white
-                                      : AppColors.appRedColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            ListView(
-                              shrinkWrap: true,
-                              children: progressData.keys.map((day) {
-                                final duration = progressData[day]!;
-                                final hours = duration.inHours;
-                                final minutes = duration.inMinutes % 60;
-                                final totalMinutes = duration.inMinutes;
-      
-                                return Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 90,
-                                        child: Text(
-                                          '$day:',
-                                          style: TextStyle(fontSize: 14,
-                                              color: _isDark ?  Colors.white:AppColors.appRedColor,),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child:  GradientProgressIndicator(
-                                          value: totalMinutes / 80.0,
-                                          minHeight: 15,
-                                        ),
-                                      ),
-                                      SizedBox(width: 10),
-                                      Text('${hours}h ${minutes}min',
-                                      style: TextStyle(
-                                        color: _isDark ?  Colors.grey:AppColors.appPrimaryColor,),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              width: 120,
-                              decoration: _isDark
-                                  ? BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(25))
-                                  : BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                        stops: [0.0, 1.0],
-                                        colors: [
-                                          Color(0xffFF5000),
-                                          Color(0xff7F96FF),
-                                        ],
-                                      ),
-                                      borderRadius: BorderRadius.circular(25)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.delete_forever_rounded,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Text(
-                                      'Eliminate',
-                                      style: TextStyle(color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ))
-            ],
+              ],
+            ),
           ),
         ),
       ),
