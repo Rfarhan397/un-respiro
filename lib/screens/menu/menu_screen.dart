@@ -50,7 +50,7 @@ class MenuScreen extends StatelessWidget {
                   height: 50,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                  padding:  EdgeInsets.symmetric(horizontal: Get.width* 0.200),
                   child: Row(
                     children: [
                       Center(
@@ -62,7 +62,7 @@ class MenuScreen extends StatelessWidget {
                               //AppTextWidget(text: 'Activate Punishment Mode',color: ,)
                         ),
                       SizedBox(
-                        width: 10,
+                        width: Get.width*0.020,
                       ),
                       GestureDetector(
                           onTap: () {

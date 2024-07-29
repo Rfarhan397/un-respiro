@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:unrespiro/model/res/components/appbar.dart';
+import 'package:unrespiro/model/res/components/chartTwo.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
 import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
 
@@ -29,7 +30,9 @@ class MetricsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              AppbarWidget(text: 'Matrics',icon: Icons.arrow_back_ios,),
+              AppbarWidget(text: 'Matrics',icon: Icons.arrow_back_ios,onTap: (){
+                Get.back();
+              },),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
@@ -92,7 +95,7 @@ class MetricsScreen extends StatelessWidget {
                     SizedBox(height: 40,),
                     AppTextWidget(text: 'Matrics',fontWeight: FontWeight.bold,fontSize: 18,),
                     buildDropDown(),
-                    CartesianChart(title: '',time: '',),
+                    CartesianChartTwo(title: '',time: '',),
                     SizedBox(height: 20,),
                     Row(
                       children: [

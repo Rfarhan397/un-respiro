@@ -89,9 +89,9 @@ class ProfileScreen extends StatelessWidget {
                     icon: Icons.arrow_back_ios,
                     onTap: (){Get.back();},
                     isGradient: _isDark ?  true : false,
-                    height: 140,bottomLeft: 200,bottomRight: 200,),
+                    height: 180,bottomLeft: 250,bottomRight: 250,),
             Positioned(
-                top: Get.height/9,
+                top: Get.height/8,
                 left: Get.width/2.8,
                 child: CircleAvatar(
                   radius: 50,
@@ -173,7 +173,8 @@ class ProfileScreen extends StatelessWidget {
                                 text: 'Connect with Calendar',
                                 fontSize: 16,
                                 color: Colors.grey,
-                                textAlign: TextAlign.start),
+                                textAlign: TextAlign.start
+                            ),
                             trailing: Container(
                               height: 25,
                               width: 90,
@@ -218,7 +219,7 @@ class ProfileScreen extends StatelessWidget {
                                 TextSpan(
                                   text: ' hrs'?? '',
                                   style: TextStyle(fontSize: 12,
-                                    color: _isDark ? AppColors.appYellowColor:AppColors.appRedColor,
+                                    color: _isDark ? AppColors.appYellowColor.withOpacity(0.5):AppColors.appRedColor,
                                   ),
                                 )
                               ]

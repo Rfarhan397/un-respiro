@@ -29,6 +29,7 @@ class AppAssets{
   static const add  = "assets/icons/add.png";
   static const logo  = "assets/icons/logo.webp";
   static const addL  = "assets/icons/add_l.webp";
+  static const giftIcon  = "assets/icons/giftIcon.webp";
   static const home  = "assets/icons/home.png";
   static const menu  = "assets/icons/menu.png";
   static const google  = "assets/icons/google.png";

@@ -25,6 +25,7 @@ class _CartesianChartState extends State<CartesianChart> {
     _SalesData('Sun', 45),
   ];
 
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);

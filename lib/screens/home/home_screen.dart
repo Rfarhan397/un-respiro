@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           left: 70, top: 10, bottom: 10),
                                       decoration: BoxDecoration(
                                         color: _isDark
-                                            ? Colors.black
+                                            ? AppColors.appBarColor
                                             : Color(0xFFEDE7F6),
                                         borderRadius: BorderRadius.circular(30.0),
                                       ),
@@ -161,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                             color: _isDark
-                                                ? Colors.black
+                                                ? AppColors.appBarColor
                                                 : Color(0xFFEDE7F6),
                                             width: 2,
                                           ),
@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                         child: CircleAvatar(
                                           backgroundColor: _isDark
-                                              ? Colors.black
+                                              ? AppColors.appBarColor
                                               : Color(0xFFEDE7F6),
                                           radius: 30.0,
                                           child: Image.asset(
@@ -194,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           left: 70, top: 10, bottom: 10),
                                       decoration: BoxDecoration(
                                         color: _isDark
-                                            ? Colors.black
+                                            ? AppColors.appBarColor
                                             : Color(0xFFEDE7F6),
                                         borderRadius: BorderRadius.circular(30.0),
                                       ),
@@ -233,7 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                             color: _isDark
-                                                ? Colors.black
+                                                ? AppColors.appBarColor
                                                 : Color(0xFFEDE7F6),
                                             width: 2,
                                           ),
@@ -241,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                         child: CircleAvatar(
                                           backgroundColor: _isDark
-                                              ? Colors.black
+                                              ? AppColors.appBarColor
                                               : Color(0xFFEDE7F6),
                                           radius: 30.0,
                                           child: Image.asset(
@@ -271,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         left: 70, top: 10, bottom: 10),
                                     decoration: BoxDecoration(
                                       color: _isDark
-                                          ? Colors.black
+                                          ? AppColors.appBarColor
                                           : Color(0xFFEDE7F6),
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
@@ -310,7 +310,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                           color: _isDark
-                                              ? Colors.black
+                                              ? AppColors.appBarColor
                                               : Color(0xFFEDE7F6),
                                           width: 2,
                                         ),
@@ -343,7 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         left: 70, top: 10, bottom: 10),
                                     decoration: BoxDecoration(
                                       color: _isDark
-                                          ? Colors.black
+                                          ? AppColors.appBarColor
                                           : Color(0xFFEDE7F6),
                                       borderRadius: BorderRadius.circular(30.0),
                                     ),
@@ -390,7 +390,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       child: CircleAvatar(
                                         backgroundColor: _isDark
-                                            ? Colors.black
+                                            ? AppColors.appBarColor
                                             : Color(0xFFEDE7F6),
                                         radius: 30.0,
                                         child: Image.asset(
@@ -460,9 +460,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Icon(
-                            Icons.card_giftcard_outlined,
-                            size: 60,
+                          Image.asset(
+                            AppAssets.giftIcon,
+                            height: 50,
                             color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
                           ),
                           SizedBox(height: 15),

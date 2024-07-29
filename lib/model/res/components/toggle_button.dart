@@ -40,6 +40,7 @@ class ToggleButton extends StatelessWidget {
                   child: Text(
                     'Timer',
                     style: TextStyle(
+                      fontSize: 12,
                       color: _isDark ? Colors.white : !toggleModel.isCronometer ?  Colors.white : lightPurpleColor,
                     ),
                   ),
@@ -64,11 +65,12 @@ class ToggleButton extends StatelessWidget {
                     right: Radius.circular(30.0),
                   ),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 19.0),
                 child: Center(
                   child: Text(
                     'Cronometer',
                     style: TextStyle(
+                      fontSize: 12,
                       color: _isDark ? Colors.white : toggleModel.isCronometer ?  Colors.white : lightPurpleColor,
                     ),
                   ),
