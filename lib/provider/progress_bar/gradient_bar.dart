@@ -1,37 +1,43 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GradientProgressIndicator extends StatelessWidget {
   final double value;
   final double minHeight;
+  final double maxValue;
 
   const GradientProgressIndicator({
+    Key? key,
     required this.value,
-    this.minHeight = 4.0,
-  });
+    required this.minHeight,
+    this.maxValue = 240.0, // Default maxValue if not provided
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: minHeight,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.orange, Colors.red, Colors.purple],
-          stops: [0.0, 0.5, 1.0],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-        borderRadius: BorderRadius.circular(minHeight / 2),
-      ),
-      child: FractionallySizedBox(
-        alignment: Alignment.centerLeft,
-        widthFactor: value,
-        child: Container(
+    return Stack(
+      children: [
+        Container(
+          height: minHeight,
           decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(minHeight / 2),
+            borderRadius: BorderRadius.circular(8.0),
+            color: Colors.grey.shade300, // Grey background for the remaining part
           ),
         ),
-      ),
+        FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          //widthFactor: (value / maxValue).clamp(0.0, 1.0), // Ensure value is between 0 and 1
+          child: Container(
+            height: minHeight,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              gradient: LinearGradient(
+                colors: [Colors.orange, Colors.red],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

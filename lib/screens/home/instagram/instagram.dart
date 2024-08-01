@@ -26,6 +26,7 @@ class Instagram extends StatelessWidget {
       _SalesData('Apr', 32),
       _SalesData('May', 40)
     ];
+
     final progressData = context.watch<ProgressModel>().progress;
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
@@ -148,47 +149,46 @@ class Instagram extends StatelessWidget {
                             final totalMinutes = duration.inMinutes;
 
                             return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8.0),
+                              padding: const EdgeInsets.symmetric(vertical: 4.0),
                               child: Row(
+
                                 children: [
                                   SizedBox(
-                                    width: 90,
-                                    child: Text(
+                                    width: 75,
+                                    child: AppTextWidget(
+                                      text:
                                       '$day:',
-                                      style: TextStyle(
-                                        fontSize: 14,
+                                         textAlign: TextAlign.start,
                                         color: _isDark
                                             ? Colors.white
                                             : AppColors.appRedColor,
-                                      ),
                                     ),
                                   ),
                                   Expanded(
                                     child: GradientProgressIndicator(
-                                      value: totalMinutes / 80.0,
-                                      minHeight: 15,
+                                      value: totalMinutes.toDouble(), // Current minutes
+                                      maxValue: totalMinutes / 240.0,
+                                      minHeight: 10,
                                     ),
                                   ),
                                   const SizedBox(width: 10),
-                                  Text(
+                                  AppTextWidget(text:
                                     '${hours}h ${minutes}min',
-                                    style: TextStyle(
                                       color: _isDark
                                           ? Color(0xff333333)
                                           : AppColors.appPrimaryColor,
-                                    ),
                                   ),
                                 ],
                               ),
                             );
                           }).toList(),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 20),
                         Container(
-                          width: 120,
+                          width: 110,
                           decoration: _isDark
                               ? BoxDecoration(
-                            color: Colors.black,
+                            color:AppColors.appBarColor,
                             borderRadius: BorderRadius.circular(25),
                           )
                               : BoxDecoration(
@@ -200,20 +200,20 @@ class Instagram extends StatelessWidget {
                             ),
                             borderRadius: BorderRadius.circular(25),
                           ),
-                          child: const Padding(
+                          child:  Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(
-                                  Icons.delete_forever_rounded,
-                                  color: Colors.white,
-                                  size: 20,
+                                Image.asset(
+                                  AppAssets.delete,
+                                  height: 15,
+                                  width: 15,
                                 ),
                                 SizedBox(width: 5),
-                                Text(
-                                  'Eliminate',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                                AppTextWidget(text: 'Eliminate',
+                                  color: Colors.white),
                               ],
                             ),
                           ),

@@ -36,47 +36,50 @@ final bool obscureText;
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
-    return TextFormField(
-    style:  TextStyle(
-        color: Colors.white,
-      ),
-      inputFormatters: inputFormatters,
-      keyboardType: keyboardType,
-      controller: controller,
-      validator: validator,
-      focusNode: focusNode,
-      onFieldSubmitted: onFieldSubmitted,
-      cursorColor: Colors.black,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20),
-        suffixIcon: suffixIcon,
-        hintText: hintText,
-        filled: true,
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(color: darkGrey, width: 2),
-          borderRadius: BorderRadius.circular(radius ?? 50),
+    return Container(
+      height: 40,
+      child: TextFormField(
+      style:  TextStyle(
+          color: Colors.white,
         ),
-        disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 50),
-          borderSide: const BorderSide(color: Colors.black),
+        inputFormatters: inputFormatters,
+        keyboardType: keyboardType,
+        controller: controller,
+        validator: validator,
+        focusNode: focusNode,
+        onFieldSubmitted: onFieldSubmitted,
+        cursorColor: Colors.black,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          suffixIcon: suffixIcon,
+          hintText: hintText,
+          filled: true,
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: darkGrey, width: 2),
+            borderRadius: BorderRadius.circular(radius ?? 50),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radius ?? 50),
+            borderSide: const BorderSide(color: Colors.black),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radius ?? 50),
+            borderSide: const BorderSide(color: Colors.white),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radius ?? 50),
+            borderSide:  BorderSide(color: isDarkMode ? Colors.white : primaryColor),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radius ?? 50),
+            borderSide:  BorderSide(color: isDarkMode ? Colors.white : primaryColor),
+          ),
+          fillColor: isDarkMode ? darkGrey : Colors.orangeAccent.withOpacity(0.1),
+          focusColor: Colors.blueGrey,
+          hintStyle:  TextStyle(fontSize: 12.0,
+              color: isDarkMode ? Colors.white:Colors.black),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 50),
-          borderSide: const BorderSide(color: primaryColor),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 50),
-          borderSide:  BorderSide(color: isDarkMode ? Colors.white : primaryColor),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius ?? 50),
-          borderSide:  BorderSide(color: isDarkMode ? Colors.white : primaryColor),
-        ),
-        fillColor: isDarkMode ? darkGrey : Colors.orangeAccent.withOpacity(0.1),
-        focusColor: Colors.blueGrey,
-        hintStyle:  TextStyle(fontSize: 12.0,
-            color: isDarkMode ? Colors.white:Colors.black),
       ),
     );
   }

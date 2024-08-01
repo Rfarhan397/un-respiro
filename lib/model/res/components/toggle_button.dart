@@ -35,7 +35,7 @@ class ToggleButton extends StatelessWidget {
                     left: Radius.circular(30.0),
                   ),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
                 child: Center(
                   child: Text(
                     'Timer',
@@ -65,7 +65,7 @@ class ToggleButton extends StatelessWidget {
                     right: Radius.circular(30.0),
                   ),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 19.0),
+                padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 2.0),
                 child: Center(
                   child: Text(
                     'Cronometer',

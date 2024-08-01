@@ -7,6 +7,7 @@ import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
 import 'package:unrespiro/model/res/widgets/button_widget.dart';
 import 'package:unrespiro/provider/theme/theme_provider.dart';
 
+import '../../../model/res/components/appbarSimple.dart';
 import '../../../provider/plan/plan_provider.dart';
 
 class PlansScreen extends StatelessWidget {
@@ -23,7 +24,7 @@ class PlansScreen extends StatelessWidget {
             child: SingleChildScrollView(
           child: Column(
             children: [
-              AppbarWidget(
+              AppbarSimpleWidget(
                 text: 'Plans',
                 icon: Icons.arrow_back_ios,
                 onTap: (){Get.back();},
@@ -166,7 +167,7 @@ class PlansScreen extends StatelessWidget {
             ),
             AppTextWidget(
               text: text,
-              fontSize: 14,
+              fontSize: 12,
             ),
           ],
         ),
@@ -185,42 +186,79 @@ class PlansScreen extends StatelessWidget {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
 
-    return GestureDetector(
-      onTap: () => planProvider.selectPlan(planValue),
-      child: Container(
-        padding: EdgeInsets.only(bottom: 10),
-        height: Get.height / 6,
-        width: Get.width / 3,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: _isDark ? AppColors.appBarColor : AppColors.appDarkPurpleColor,
-          border: Border.all(
-            color: isSelected ? _isDark ? AppColors.appYellowColor:AppColors.appRedColor :  Colors.transparent,
-            width: 2,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Radio(
-                value: planValue,
-                groupValue: selectedPlan,
-                activeColor: _isDark ? AppColors.appYellowColor:AppColors.appRedColor,
-                onChanged: (int? value) {
-                  if (value != null) {
-                    planProvider.selectPlan(value);
-                  }
-                },
-              ),
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => planProvider.selectPlan(planValue),
+        child: Container(
+          padding: EdgeInsets.only(bottom: 10),
+          height: 110,
+          width: 120,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: _isDark ? AppColors.appBarColor : AppColors.appDarkPurpleColor,
+            border: Border.all(
+              color: isSelected ? _isDark ? AppColors.appYellowColor:AppColors.appRedColor :  Colors.transparent,
+              width: 2,
             ),
-            AppTextWidget(text: title,fontSize: 14),
-            AppTextWidget(text: price,fontSize: 16,),
-            AppTextWidget(text: duration,fontSize: 12,),
-          ],
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top:8.0,right: 8.0,bottom: 8.0),
+                child: CustomRadio(isSelected, _isDark),
+              ),
+      
+              // Align(
+              //   alignment: Alignment.centerRight,
+              //   child: Radio(
+              //     value: planValue,
+              //     groupValue: selectedPlan,
+              //     activeColor: _isDark ? AppColors.appYellowColor:AppColors.appRedColor,
+              //     onChanged: (int? value) {
+              //       if (value != null) {
+              //         planProvider.selectPlan(value);
+              //       }
+              //     },
+              //   ),
+              // ),
+              AppTextWidget(text: title,fontSize: 12),
+              AppTextWidget(text: price,fontSize: 14,),
+              AppTextWidget(text: duration,fontSize: 10,),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Align CustomRadio(bool isSelected, bool _isDark) {
+    return Align(
+            alignment: Alignment.topRight,
+            child: Container(
+              width: 16,
+              height: 16,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: isSelected ? (_isDark ? AppColors.appYellowColor:AppColors.appRedColor)
+                      : _isDark? AppColors.appYellowColor:AppColors.appRedColor,
+                  width: 1,
+                ),
+              ),
+              child: isSelected
+                  ? Center(
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _isDark ? AppColors.appYellowColor:AppColors.appRedColor,
+                  ),
+                ),
+              )
+                  : null,
+            ),
+          );
   }
 }

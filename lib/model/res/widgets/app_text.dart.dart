@@ -13,7 +13,7 @@ class AppTextWidget extends StatelessWidget {
   final FontWeight fontWeight;
   final TextAlign textAlign;
   final bool softWrap;
-  final Color color;
+  final Color? color;
   final TextDecoration textDecoration;
   const AppTextWidget({
     super.key,
@@ -41,6 +41,44 @@ class AppTextWidget extends StatelessWidget {
           fontWeight: fontWeight,
           fontSize: fontSize,
           color: isDarkMode ? Colors.white : color,
+      ),
+    );
+  }
+}
+class AppTextWidgetWithStaticColor extends StatelessWidget {
+  final String text;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final TextAlign textAlign;
+  final bool softWrap;
+  final Color? color;
+  final TextDecoration textDecoration;
+  const AppTextWidgetWithStaticColor({
+    super.key,
+    required this.text,
+    this.fontWeight = FontWeight.normal,
+    this.color = AppColors.appBlackColor,
+    this.textAlign = TextAlign.center,
+    this.textDecoration = TextDecoration.none,
+    this.fontSize = 12,
+    this.softWrap = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
+    return AutoSizeText(
+      maxFontSize: fontSize,
+      minFontSize: 8.0,
+      text,
+      textAlign: textAlign,
+      softWrap: softWrap,
+      style: GoogleFonts.nunito(
+        decoration: textDecoration,
+          decorationColor: AppColors.appWhiteColor,
+          fontWeight: fontWeight,
+          fontSize: fontSize,
+          color:  color,
       ),
     );
   }

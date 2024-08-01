@@ -38,7 +38,7 @@ class _CartesianChartState extends State<CartesianChart> {
         labelStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.white), // Y-axis labels
       ),
       title: ChartTitle(text: widget.title ?? "",
-        textStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.white,fontSize: 12), // Title text color
+        textStyle:  TextStyle(color: Colors.white,fontSize: 12), // Title text color
       ),
       legend: const Legend(isVisible: false,
         textStyle: const TextStyle(color: Colors.transparent), // Title text color
@@ -55,7 +55,7 @@ class _CartesianChartState extends State<CartesianChart> {
           yValueMapper: (_SalesData sales, _) => sales.sales,
           //name: widget.time,
           dataLabelSettings: DataLabelSettings(
-            isVisible: true,
+            isVisible: false,
             textStyle: TextStyle(color:  _isDark ? Color(0xff333333) :Colors.white), // Data label text color
           ),
         ),

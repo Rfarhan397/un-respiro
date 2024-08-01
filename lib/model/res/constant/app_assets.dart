@@ -14,6 +14,10 @@ class AppAssets{
   static const girl  = "assets/images/girl.webp";
   static const clock1  = "assets/images/clockl.webp";
   static const clock  = "assets/images/clock.webp";
+  static const profileBg  = "assets/images/profile_bg.webp";
+  static const profileShadow  = "assets/images/profile_shadow.webp";
+  static const permissionBg  = "assets/images/permission_bg.webp";
+  static const background  = "assets/images/background.webp";
 
 
 
@@ -24,6 +28,8 @@ class AppAssets{
   static const dummy  = "assets/icons/dummy.webp";
   static const insta  = "assets/icons/insta.webp";
   static const pinterest  = "assets/icons/pinterest.webp";
+  static const delete  = "assets/icons/delete.webp";
+  static const pencil  = "assets/icons/pencil.webp";
   static const x  = "assets/icons/x.webp";
   static const tiktok  = "assets/icons/tiktok.webp";
   static const add  = "assets/icons/add.png";

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
+import 'package:unrespiro/model/res/constant/app_colors.dart';
 
 import '../../constant.dart';
 import '../../model/res/constant/app_assets.dart';
@@ -31,30 +32,73 @@ class PermissionScreen extends StatelessWidget {
       //   ],
       // ),
       body: SafeArea(
-        child: Padding(
-          padding:  EdgeInsets.all(Get.width * 0.15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: Get.width,
-                  height: Get.width * 0.45,
-                  child: Image.asset(_isDark ?  AppAssets.lockImage : AppAssets.lockImageL ,fit: BoxFit.contain,)),
-              SizedBox(height: Get.width * 0.10,),
-              AppTextWidget(text: 'Permission Required',fontSize: 18.0,fontWeight: FontWeight.bold,),
-              SizedBox(height: Get.width * 0.10,),
-              const AppTextWidget(text: AppString.confirm_text,fontSize: 12.0,textAlign: TextAlign.center,),
-              SizedBox(height: Get.width * 0.10,),
-              const AppTextWidget(text: AppString.permissiom_text,fontWeight:FontWeight.bold,fontSize: 14.0,textAlign: TextAlign.center,),
-              SizedBox(height: Get.width * 0.12,),
-              ButtonWidget(
-                  text: "Permission", onClicked: (){
-                Get.toNamed(RoutesName.mainScreen);
-              }, width: Get.width * 0.50, height: 40.0),
+        child: Stack(
+          children: [
 
-            ],
-          ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Container(
+                  height: 250,
+                  width: Get.width/1,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          AppAssets.permissionBg,
+                        ),
+                        fit: BoxFit.fill,
+                        opacity: 0.8
+                    ),
+
+                  )
+
+              ),
+            ),
+            Positioned(
+              top: 220,
+              child: Container(
+                  height: 250,
+                  width: Get.width/1,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          AppAssets.profileShadow,
+                        ),
+                        fit: BoxFit.fill,
+
+                    ),
+
+                  )
+
+              ),
+            ),
+            Padding(
+              padding:  EdgeInsets.all(Get.width * 0.15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      width: Get.width,
+                      height: Get.width * 0.40,
+                      child: Image.asset(_isDark ?  AppAssets.lockImage : AppAssets.lockImageL ,fit: BoxFit.contain,)),
+                  SizedBox(height: Get.width * 0.10,),
+                  AppTextWidget(text: 'Permission Required',fontSize: 16.0,fontWeight: FontWeight.bold,),
+                  SizedBox(height: Get.width * 0.10,),
+                  const AppTextWidget(text: AppString.confirm_text,fontSize: 12.0,textAlign: TextAlign.center,),
+                  SizedBox(height: Get.width * 0.10,),
+                  const AppTextWidget(text: AppString.permissiom_text,fontWeight:FontWeight.bold,fontSize: 14.0,textAlign: TextAlign.center,),
+                  SizedBox(height: Get.width * 0.12,),
+                  ButtonWidget(
+                      text: "Permission", onClicked: (){
+                    Get.toNamed(RoutesName.mainScreen);
+                  }, width: Get.width * 0.40, height: 30.0),
+
+                ],
+              ),
+            ),
+
+
+          ],
         ),
       ),
     );

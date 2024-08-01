@@ -6,12 +6,16 @@ import 'package:unrespiro/model/res/components/appbar.dart';
 import 'package:unrespiro/model/res/components/chartTwo.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
 import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
+import 'package:unrespiro/model/res/widgets/customRadio.dart';
 
+import '../../../model/res/components/appbarSimple.dart';
 import '../../../model/res/components/chart.dart';
+import '../../../model/res/widgets/circularpercentindicator.dart';
 import '../../../provider/dropdown/dropdown_provider.dart';
 import '../../../provider/matrics_progess/matrics_provider.dart';
 import '../../../provider/progress_bar/gradient_bar.dart';
 import '../../../provider/progress_bar/progress_bar.dart';
+import '../../../provider/theme/theme_provider.dart';
 
 class MetricsScreen extends StatelessWidget {
    MetricsScreen({super.key});
@@ -23,6 +27,8 @@ class MetricsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final percentageProvider = Provider.of<MatricsPercentageProvider>(context);
     final percentage = percentageProvider.percentage;
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
     final progressData = context.watch<ProgressModel>().progress;
     return Scaffold(
       body: SafeArea(child: Container(
@@ -30,7 +36,23 @@ class MetricsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              AppbarWidget(text: 'Matrics',icon: Icons.arrow_back_ios,onTap: (){
+              // AppBar(
+              //   actions: [
+              //     Switch(
+              //       value: themeProvider.isDarkMode,
+              //       onChanged: (value) {
+              //         themeProvider.toggleTheme();
+              //       },
+              //     ),
+              //   ],
+              // ),
+              AppbarSimpleWidget(
+                text: 'Matrics',
+
+                textColor: _isDark ? Colors.white:Colors.black,
+                color: _isDark ? AppColors.appBarColor:AppColors.appDarkPurpleColor,
+                secondColorGradient: _isDark ? AppColors.appBarColor:AppColors.appDarkPurpleColor,
+                icon: Icons.arrow_back_ios,onTap: (){
                 Get.back();
               },),
               Padding(
@@ -50,51 +72,34 @@ class MetricsScreen extends StatelessWidget {
                               AppTextWidget(
                                 text:
                                 'Percentage of usage of your applications:',
-                                color: Colors.white, fontSize: 16,textAlign: TextAlign.start,
+                                color: _isDark ? Colors.white : AppColors.appRedColor,
+                                fontSize: 12,
+                                textAlign: TextAlign.start,
                               ),
                               SizedBox(height: 10),
                               AppTextWidget(
                                 text:
                                 'Date of first installation:',
-                                color: Colors.white, fontSize: 16,textAlign: TextAlign.start,),
+                                color: _isDark ? Colors.black:Colors.black,
+                                fontSize: 12,textAlign: TextAlign.start,),
                               SizedBox(height: 5),
-                              Text(
+                              AppTextWidget(
+                                text:
                                 '13/02/2020',
-                                style: TextStyle(color: Colors.grey, fontSize: 16),
-                              ),
+                                color:  Colors.grey,
+                                  fontSize: 12),
                             ],
                           ),
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: CircularPercentIndicator(
-                            radius: 60.0,
-                            lineWidth: 4.0,
-                            percent: percentage / 100,
-                            center: Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                color: AppColors.appBarColor,
-                                borderRadius: BorderRadius.circular(60)
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "${percentage.toInt()}%",
-                                  style: TextStyle(fontSize: 40.0, color: Colors.orange),
-                                ),
-                              ),
-                            ),
-                            progressColor: Colors.orange,
-                            backgroundColor: Colors.grey[800]!,
-                            circularStrokeCap: CircularStrokeCap.round,
-                          ),
-                        ),
+                        CircularIndicatorWithEndCircle(percentage: 80,)
+                       
                       ],
                     ),
                     SizedBox(height: 40,),
-                    AppTextWidget(text: 'Matrics',fontWeight: FontWeight.bold,fontSize: 18,),
-                    buildDropDown(),
+                    AppTextWidget(text: 'Matrics',
+                      color: _isDark ? Colors.white: AppColors.appRedColor,
+                      fontWeight: FontWeight.bold,fontSize: 14,),
+                    buildDropDown(context),
                     CartesianChartTwo(title: '',time: '',),
                     SizedBox(height: 20,),
                     Row(
@@ -108,8 +113,12 @@ class MetricsScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 10,),
-                        AppTextWidget(
-                            text: 'Time of use since the installation of Unrespiro',fontSize: 14,)
+                        AppTextWidgetWithStaticColor(
+                            text: 'Time of use since the installation of Unrespiro',
+                          fontSize: 12,
+                          softWrap: true,
+                          color: Colors.grey,
+                        ),
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -124,15 +133,21 @@ class MetricsScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 10,),
-                        AppTextWidget(text: 'Time of use before Unrespiro',fontSize: 14,)
+                        AppTextWidgetWithStaticColor(
+                          text: 'Time of use before Unrespiro',
+                          fontSize: 12,
+                        color: Colors.grey
+                        )
                       ],
                     ),
                     SizedBox(height: 30,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AppTextWidget(text: 'Time saved',fontSize: 18,),
-                        buildDropDown(),
+                        AppTextWidget(text: 'Time saved',
+                          color: _isDark ? Colors.white: AppColors.appRedColor,
+                          fontSize: 14,fontWeight: FontWeight.bold,),
+                        buildDropDown(context),
                       ],
                     ),
                     SizedBox(height: 30,),
@@ -152,19 +167,19 @@ class MetricsScreen extends StatelessWidget {
                                 width: 90,
                                 child: Text(
                                   '$day:',
-                                  style: TextStyle(fontSize: 14,color: Colors.white),
+                                  style: TextStyle(fontSize: 14,color: _isDark ? Colors.white: Colors.black,),
                                 ),
                               ),
                               Expanded(
                                 child:  GradientProgressIndicator(
                                   value: totalMinutes / 80.0,
-                                  minHeight: 15,
+                                  minHeight: 12,
                                 ),
                               ),
                               SizedBox(width: 10),
                               Text('${hours}h ${minutes}min',
                                 style: TextStyle(
-                                  color: Colors.grey,),
+                                  color: _isDark ? Colors.grey: Colors.black.withOpacity(0.8),),
                               ),
                             ],
                           ),
@@ -183,72 +198,178 @@ class MetricsScreen extends StatelessWidget {
     );
   }
 
-   Consumer<DropdownProvider> buildDropDown() {
+   // Consumer<DropdownProvider> buildDropDown(context) {
+   //   final themeProvider = Provider.of<ThemeProvider>(context);
+   //   final _isDark = themeProvider.isDarkMode;
+   //   return Consumer<DropdownProvider>(
+   //                builder: (context, dropdownProvider, child) {
+   //                  return Align(
+   //                    alignment: Alignment.centerRight,
+   //                    child: Container(
+   //                      width: Get.width/2.8,
+   //                      height: 30,
+   //                      //padding: EdgeInsets.all(10),
+   //                      decoration: BoxDecoration(
+   //                        color: _isDark ? AppColors.appBarColor:AppColors.appDarkPurpleColor,
+   //                        borderRadius: BorderRadius.circular(40),
+   //                        border: Border.all(color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor),
+   //                      ),
+   //                      child: Column(
+   //                        mainAxisSize: MainAxisSize.min,
+   //                        children: [
+   //                          GestureDetector(
+   //                            onTap: () {
+   //                              // showDialog(
+   //                              //   context: context,
+   //                              //   builder: (context) => AlertDialog(
+   //                              //     backgroundColor: _isDark ? AppColors.appBarColor:AppColors.appDarkPurpleColor,
+   //                              //     alignment: Alignment.centerRight,
+   //                              //     content: Column(
+   //                              //       mainAxisSize: MainAxisSize.min,
+   //                              //       children: options.map((option) {
+   //                              //         return RadioListTile<String>(
+   //                              //           title: Text(
+   //                              //             option,
+   //                              //             style: TextStyle(color: _isDark ? Colors.black:Colors.white),
+   //                              //           ),
+   //                              //           value: option,
+   //                              //           groupValue: dropdownProvider.selectedOption,
+   //                              //           activeColor: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+   //                              //           onChanged: (value) {
+   //                              //             if (value != null) {
+   //                              //               dropdownProvider.setSelectedOption(value);
+   //                              //               Navigator.of(context).pop();
+   //                              //             }
+   //                              //           },
+   //                              //         );
+   //                              //       }).toList(),
+   //                              //     ),
+   //                              //   ),
+   //                              // );
+   //                            },
+   //                            child: Row(
+   //                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+   //                              children: [
+   //                                AppTextWidget(
+   //                                  text:
+   //                                  dropdownProvider.selectedOption,
+   //                                 color: _isDark ? Colors.white:Colors.black),
+   //                                Icon(
+   //                                  Icons.keyboard_arrow_down_rounded,
+   //                                  color: Colors.orange,
+   //                                ),
+   //                              ],
+   //                            ),
+   //                          ),
+   //                        ],
+   //                      ),
+   //                    ),
+   //                  );
+   //                },
+   //              );
+   // }
+   Consumer<DropdownProvider> buildDropDown(context) {
+     final themeProvider = Provider.of<ThemeProvider>(context);
+     final _isDark = themeProvider.isDarkMode;
      return Consumer<DropdownProvider>(
-                  builder: (context, dropdownProvider, child) {
-                    return Align(
-                      alignment: Alignment.centerRight,
-                      child: Container(
-                        width: Get.width/3,
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(40),
-                          border: Border.all(color: Colors.orange),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                showDialog(
-
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    backgroundColor: Colors.black,
-                                    alignment: Alignment.centerRight,
-                                    content: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: options.map((option) {
-                                        return RadioListTile<String>(
-                                          title: Text(
-                                            option,
-                                            style: TextStyle(color: Colors.white),
-                                          ),
-                                          value: option,
-                                          groupValue: dropdownProvider.selectedOption,
-                                          activeColor: Colors.orange,
-                                          onChanged: (value) {
-                                            if (value != null) {
-                                              dropdownProvider.setSelectedOption(value);
-                                              Navigator.of(context).pop();
-                                            }
-                                          },
-                                        );
-                                      }).toList(),
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    dropdownProvider.selectedOption,
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                    color: Colors.orange,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                );
+       builder: (context, dropdownProvider, child) {
+         return Align(
+           alignment: Alignment.centerRight,
+           child: Column(
+             mainAxisSize: MainAxisSize.min,
+             children: [
+               Container(
+                 width: Get.width / 2.8,
+                // height: 30,
+                 decoration: BoxDecoration(
+                   color: _isDark ? AppColors.appBarColor : AppColors.appDarkPurpleColor,
+                   borderRadius: BorderRadius.circular(10),
+                   //border: Border.all(color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor),
+                 border: Border(
+                   top: BorderSide(
+                     color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+                     width: 1.0,
+                   ),
+                   right: BorderSide(
+                     color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+                     width: 1.0,
+                   ),
+                   bottom: BorderSide(
+                     color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+                     width: 1.0,
+                   ),
+                   left: BorderSide(
+                     color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+                     width: 1.0,
+                   ),
+                 )
+                 ),
+                 child: GestureDetector(
+                   onTap: () {
+                     dropdownProvider.toggleDropdownVisibility();
+                   },
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                     children: [
+                       AppTextWidget(
+                         text: dropdownProvider.selectedOption,
+                         color: _isDark ? Colors.white : Colors.black,
+                       ),
+                       Icon(
+                         Icons.keyboard_arrow_down_rounded,
+                         color: _isDark ? AppColors.appYellowColor: AppColors.appRedColor,
+                       ),
+                     ],
+                   ),
+                 ),
+               ),
+               Visibility(
+                 visible: dropdownProvider.isDropdownVisible,
+                 child: Container(
+                   width: Get.width / 2.8,
+                   decoration: BoxDecoration(
+                     color: _isDark ? AppColors.appBarColor : AppColors.appDarkPurpleColor,
+                     borderRadius: BorderRadius.only(
+                         bottomRight: Radius.circular(10)
+                         ,bottomLeft: Radius.circular(10)),
+                    // border: Border.all(color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor),
+                  border: Border(
+                    top: BorderSide.none,
+                    right: BorderSide(
+                      color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+                      width: 1.0,
+                    ),
+                    bottom: BorderSide(
+                      color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+                      width: 1.0,
+                    ),
+                    left: BorderSide(
+                      color: _isDark ? AppColors.appYellowColor : AppColors.appRedColor,
+                      width: 1.0,
+                    ),
+                  )
+                   ),
+                   child: Column(
+                     //mainAxisSize: MainAxisSize.min,
+                     children: options.map((option) {
+                       return CustomRadioItem(
+                           option: option,
+                           groupValue: dropdownProvider.selectedOption,
+                           isDark: _isDark , onChanged:(value) {
+                         if (value != null) {
+                           dropdownProvider.setSelectedOption(value);
+                           dropdownProvider.toggleDropdownVisibility();
+                         }
+                       },);
+                     }).toList(),
+                   ),
+                 ),
+               ),
+             ],
+           ),
+         );
+       },
+     );
    }
+
 }

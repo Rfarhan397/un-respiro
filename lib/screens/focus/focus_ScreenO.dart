@@ -55,13 +55,13 @@ class _FocusScreenOState extends State<FocusScreenO> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: Get.height / 1.6,
+                  height: Get.height / 2.4,
                   decoration: BoxDecoration(
                     color:
                         _isDark ? Color(0xff111111) : AppColors.appPurpleColor,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(200),
-                      bottomRight: Radius.circular(200),
+                      bottomLeft: Radius.circular(250),
+                      bottomRight: Radius.circular(250),
                     ),
                   ),
                   child: Padding(
@@ -71,17 +71,16 @@ class _FocusScreenOState extends State<FocusScreenO> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         ToggleButton(),
-                        SizedBox(
-                          height: 20,
-                        ),
                         Image.asset(
                           _isDark ? AppAssets.clock:AppAssets.clock1,
-                          height: 250,),
-                        SizedBox(height: 50,),
+                          height: 200,),
+                        // SizedBox(height: 50,),
                         ButtonWidget(text: 'Activate',
-                            onClicked: (){}, width: 140, height: 40)
-                        //ClockScreen(),
-                        //NumbersButton(),
+                            textSize: 10.0,
+                            radius: 30,
+                            onClicked: (){}, width: 80, height: 25),
+                        // //ClockScreen(),
+                        // //NumbersButton(),
                       ],
                     ),
                   ),
@@ -92,13 +91,10 @@ class _FocusScreenOState extends State<FocusScreenO> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: 5,
-                      ),
                       Center(
                           child: AppTextWidget(
                         text: 'Registered applications',
-                        fontSize: 16,
+                        fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: _isDark ? Colors.white: Colors.black,
                       )),
@@ -175,14 +171,15 @@ class _FocusScreenOState extends State<FocusScreenO> {
               height: 10,
             ),
             Container(
-                width: 80,
-                height: 30,
+                width: 60,
+                height: 25,
                 decoration: BoxDecoration(
                   color: _isDark? Color(0xff111111):AppColors.appDarkPurpleColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(child: AppTextWidget(
-                    color: _isDark ? Colors.white: Colors.black,
+                  fontSize: 10,
+                    color: _isDark ? Colors.white: Colors.black.withOpacity(0.6),
                     text: text))),
           ],
         ),
@@ -192,6 +189,9 @@ class _FocusScreenOState extends State<FocusScreenO> {
           left: 3,
           child: Container(
             decoration: BoxDecoration(
+              border: Border.all(
+                color: _isDark ? Color(0xffA6A6A6):AppColors.appDarkPurpleColor,
+              ),
                 color: isCheck ? Colors.green : _isDark? Colors.white: Colors.grey,
                 borderRadius: BorderRadius.circular(10)),
             width: 20,

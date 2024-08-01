@@ -7,6 +7,7 @@ import 'app_text.dart.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String text;
+  final FontWeight fontWeight;
   final double textSize;
   final VoidCallback onClicked;
   final IconData? icon;
@@ -14,12 +15,14 @@ class ButtonWidget extends StatelessWidget {
   final double radius;
   final bool loader, oneColor;
 
+
   final Color textColor, borderColor, backgroundColor;
   final bool isShadow;
 
   const ButtonWidget({
     Key? key,
     required this.text,
+     this.fontWeight = FontWeight.normal,
     this.textSize = 15,
     required this.onClicked,
     required this.width,
@@ -77,7 +80,7 @@ class ButtonWidget extends StatelessWidget {
             text: text,
             fontSize: textSize,
             color: textColor,
-            fontWeight: FontWeight.w900,
+            fontWeight: fontWeight,
           ),
         ),
       ),

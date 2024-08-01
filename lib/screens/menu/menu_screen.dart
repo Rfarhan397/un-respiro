@@ -8,6 +8,7 @@ import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
 import 'package:unrespiro/model/res/widgets/button_widget.dart';
 import '../../constant.dart';
 import '../../model/res/components/appbar.dart';
+import '../../model/res/components/appbarSimple.dart';
 import '../../model/res/constant/app_colors.dart';
 import '../../model/res/routes/routes_name.dart';
 import '../../provider/actions/action_provider.dart';
@@ -39,7 +40,7 @@ class MenuScreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                AppbarWidget(
+                AppbarSimpleWidget(
                   text: 'More',
                   textColor: Colors.black,
                   color: _isDark ?AppColors.appBarColor:AppColors.appDarkPurpleColor,
@@ -89,40 +90,40 @@ class MenuScreen extends StatelessWidget {
                         },
                         title: AppTextWidget(
                           text: 'Profile',
-                          fontSize: 16,
+                          fontSize: 14,
                           textAlign: TextAlign.start,
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Icon(Icons.arrow_forward_ios,size: 16,),
                       ),
                       ListTile(
                         onTap: (){},
                         title: AppTextWidget(
-                            fontSize: 16,
+                            fontSize: 14,
                             text: 'Adjusts', textAlign: TextAlign.start),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Icon(Icons.arrow_forward_ios,size: 16,),
                       ),
                       ListTile(
                         onTap: (){
                           Get.toNamed(RoutesName.planScreen);
                         },
                         title: AppTextWidget(
-                            fontSize: 16,
+                            fontSize: 14,
                             text: 'Plans', textAlign: TextAlign.start),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: Icon(Icons.arrow_forward_ios,size: 16,),
                       ),
                       ListTile(
                         onTap: (){},
                         title: AppTextWidget(
-                            fontSize: 16,
+                            fontSize: 14,
                             text: 'Copy invitation link to Unrespiro',
                             textAlign: TextAlign.start),
-                        trailing: Icon(Icons.link),
+                        trailing: Icon(Icons.link,size: 16,),
                       ),
                       SizedBox(
-                        height: 100,
+                        height: 120,
                       ),
                       Container(
-                        height: 40,
+                        height: 35,
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         // width: Get.width/1.4,
                         decoration: BoxDecoration(
@@ -142,11 +143,14 @@ class MenuScreen extends StatelessWidget {
                             AppTextWidget(text: 'Join the club',color: Colors.white,fontSize: 14,),
                             Image.asset(
                               AppAssets.discord,
-                              cacheHeight: 20,
+                              cacheHeight: 16,
                               color: _isDark ? Color(0xFF5865F2):Colors.white ,
                             )
                           ],
                         ),
+                      ),
+                      SizedBox(
+                        height: 50,
                       ),
                     ],
                   ),
