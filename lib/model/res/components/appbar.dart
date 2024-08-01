@@ -60,7 +60,8 @@ class AppbarWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(width: 20,),
-            GestureDetector(onTap:onTap,
+            GestureDetector(
+                onTap:onTap,
                 child: Icon(icon,size: 20,)),
             SizedBox(width: Get.width/3.3,),
             AppTextWidget(

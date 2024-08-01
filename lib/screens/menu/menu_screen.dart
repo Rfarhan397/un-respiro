@@ -59,7 +59,7 @@ class MenuScreen extends StatelessWidget {
                               ButtonWidget(text: 'Activate Punishment Mode',
                                   textSize: 12,
                                   onClicked: (){},
-                                  width: Get.width/2, height: 40)
+                                  width: Get.width/2, height: 30)
                               //AppTextWidget(text: 'Activate Punishment Mode',color: ,)
                         ),
                       SizedBox(
@@ -72,7 +72,7 @@ class MenuScreen extends StatelessWidget {
                           },
                           child: Icon(
                             Icons.info_outline,
-                            color: _isDark ?AppColors.appYellowColor:AppColors.appRedColor,
+                            color: _isDark ?Colors.yellow:AppColors.appRedColor,
                           ))
                     ],
                   ),
