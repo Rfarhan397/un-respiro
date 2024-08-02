@@ -32,34 +32,14 @@ class ConfirmScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            _isDark? Container(
-              margin: EdgeInsets.symmetric(vertical: 100,horizontal: 50),
-              decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [
-                      AppColors.appYellowColor.withOpacity(0.2),
-                      Colors.black.withOpacity(0.1),
-                      Colors.black,
-                    ],
-                  )
-              ),
-            ):
-            Container(
-              //margin: EdgeInsets.symmetric(vertical: 100,horizontal: 50),
-              decoration: BoxDecoration(
-                color: Color(0xffEAE1E1).withOpacity(0.8)
-                  // gradient: LinearGradient(colors: [
-                  //   Colors.pink.withOpacity(0.1),
-                  //   Colors.white,
-                  //   AppColors.appDarkPurpleColor
-                  //
-                  // ],
-                  //     begin: Alignment.topCenter,
-                  //     end: Alignment.bottomCenter
-                  // )
-              ),
-            ),
-            Padding(
+          Container(
+          height: Get.height,
+          decoration: BoxDecoration(
+            color: Color(0xffEAE1E1),
+
+          ),
+        ),
+             Padding(
               padding:  EdgeInsets.all(Get.width * 0.15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,8 +48,10 @@ class ConfirmScreen extends StatelessWidget {
                   SizedBox(
                      width: Get.width,
                       height: Get.width * 0.8,
-                      child: Image.asset(AppAssets.mobileImage,fit: BoxFit.contain,)),
-                   SizedBox(height: Get.width * 0.12,),
+                      child: Image.asset(
+                        _isDark ?AppAssets.mobileBlackImage:AppAssets.mobileImage,
+                        fit: BoxFit.cover,)),
+                   //SizedBox(height: Get.width * 0.12,),
                   const AppTextWidget(
                     text: AppString.confirm_text,fontWeight: FontWeight.w400,fontSize: 14.0,textAlign: TextAlign.center,),
                    SizedBox(height: Get.width * 0.12,),

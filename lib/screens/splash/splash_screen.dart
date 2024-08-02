@@ -59,7 +59,9 @@ class _SplashScreenState extends State<SplashScreen>  with SingleTickerProviderS
               // ),
              Padding(
                padding: const EdgeInsets.symmetric(horizontal: 70.0,vertical: 20),
-               child: Image.asset(AppAssets.loginImage),
+               child: Image.asset(
+
+                   _isDark? AppAssets.loginImage:AppAssets.loginImageWhite),
              ),
              const SizedBox(height: 20.0,),
               RotationTransition(

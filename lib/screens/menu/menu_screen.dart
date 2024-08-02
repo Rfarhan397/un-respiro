@@ -41,7 +41,7 @@ class MenuScreen extends StatelessWidget {
             Column(
               children: [
                 AppbarSimpleWidget(
-                  text: 'More',
+                  text: 'MORE',
                   textColor: Colors.black,
                   color: _isDark ?AppColors.appBarColor:AppColors.appDarkPurpleColor,
                   secondColorGradient: _isDark ? AppColors.appBarColor : AppColors.appDarkPurpleColor,
@@ -92,7 +92,8 @@ class MenuScreen extends StatelessWidget {
                         height: 150,
                       ),
                       Container(
-                        height: 35,
+                        height: 30,
+                        width: Get.width/1.6,
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         // width: Get.width/1.4,
                         decoration: BoxDecoration(
@@ -109,7 +110,8 @@ class MenuScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppTextWidget(text: 'Join the club',color: Colors.white,fontSize: 14,),
+                            AppTextWidget(
+                              text: 'Join the club',color: Colors.white,fontSize: 14,),
                             Image.asset(
                               AppAssets.discord,
                               cacheHeight: 16,
@@ -162,16 +164,15 @@ class MenuScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
+                            const Padding(
+                              padding: EdgeInsets.all(25.0),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   AppTextWidget(
+                                    fontSize: 12,
                                     text: AppString.confirm_text,),
-                                  AppTextWidget(
-                                    text: AppString.confirm_text,
-                                  ),
+
                                 ],
                               ),
                             ),

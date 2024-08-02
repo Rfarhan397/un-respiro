@@ -186,7 +186,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: Get.width / 2,
                         height: Get.height / 3.2,
                         decoration: BoxDecoration(
-                          image: DecorationImage(image: AssetImage(AppAssets.giftBG)),
+                          image: DecorationImage(image: AssetImage(
+                              _isDark?
+                              AppAssets.giftBG
+                          : AppAssets.giftBGWhite),
+                        ),
                           // color: _isDark
                           //     ? Colors.grey.withOpacity(0.2)
                           //     : Color(0xffDDD3E6).withOpacity(0.5),5
@@ -283,7 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
           width: Get.width * 0.6,
           padding: EdgeInsets.only(left: 70, top: 10, bottom: 10),
           decoration: BoxDecoration(
-            color: _isDark ? AppColors.appBarColor : Color(0xFFEDE7F6),
+            color: _isDark ? AppColors.appBarColor : Color(0xFFDDD3E6),
             borderRadius: BorderRadius.circular(30.0),
           ),
           child: Row(
@@ -314,14 +318,14 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: _isDark ? AppColors.appBarColor : Color(0xFFEDE7F6),
+                color: _isDark ? AppColors.appBarColor : Color(0xFFDDD3E6),
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(40),
             ),
             child: CircleAvatar(
               backgroundColor:
-                  _isDark ? AppColors.appBarColor : Color(0xFFEDE7F6),
+                  _isDark ? AppColors.appBarColor : Colors.white,
               radius: 28.0,
               child: Image.asset(
                 image,

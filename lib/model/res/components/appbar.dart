@@ -63,8 +63,9 @@ class AppbarWidget extends StatelessWidget {
             GestureDetector(
                 onTap:onTap,
                 child: Icon(icon,size: 20,)),
-            SizedBox(width: Get.width/3.3,),
+            SizedBox(width: Get.width/3.7,),
             AppTextWidget(
+              fontWeight: FontWeight.bold,
               color: textColor,
               text:text ?? "",fontSize: fontSize,textAlign: TextAlign.center,),
           ],

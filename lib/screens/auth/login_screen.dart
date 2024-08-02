@@ -38,27 +38,14 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-        _isDark? Container(
-              margin: EdgeInsets.symmetric(vertical: 100,horizontal: 50),
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(AppAssets.loginBackground)),
-
-              ),
-            ):
         Container(
-          //margin: EdgeInsets.symmetric(vertical: 100,horizontal: 50),
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                                  AppColors.appPurpleColor,
-                                  Colors.white,
-                                  AppColors.appDarkPurpleColor
-
-                                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter
-              )
-          ),
-        ),
+          height: Get.height,
+              width: Get.width,
+          child: Image.asset(
+            _isDark?
+            AppAssets.loginBackground:AppAssets.loginBackgroundWhite,
+            fit: BoxFit.cover,),
+            ),
             Padding(
               padding:  EdgeInsets.all(Get.width * 0.15),
               child: Column(
@@ -67,7 +54,8 @@ class LoginScreen extends StatelessWidget {
                 children: [
 
 
-                  Image.asset(AppAssets.loginImage,height: 50,width: Get.width/2,),
+                  Image.asset(
+                    _isDark ?AppAssets.loginImage:AppAssets.loginImageWhite,height: 50,width: Get.width/2,),
                   //AppTextWidget(text: 'un respiro',fontSize: 24.0,fontWeight: FontWeight.bold,),
                   SizedBox(height: Get.width * 0.18,),
 

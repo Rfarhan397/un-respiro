@@ -32,7 +32,8 @@ class _FocusScreenOState extends State<FocusScreenO> {
           elevation: 0,
           backgroundColor: _isDark ?  AppColors.appBarColor:AppColors.appPurpleColor ,
           title: AppTextWidget(
-            text: 'Focus Mode',
+            text: 'FOCUS MODE',
+            fontWeight: FontWeight.bold,
             fontSize: 16,
           ),
           centerTitle: true,

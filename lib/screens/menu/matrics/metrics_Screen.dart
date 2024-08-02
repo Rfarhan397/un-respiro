@@ -47,8 +47,8 @@ class MetricsScreen extends StatelessWidget {
               //   ],
               // ),
               AppbarSimpleWidget(
-                text: 'Matrics',
-
+                text: 'MATRICS',
+                fontSize: 16,
                 textColor: _isDark ? Colors.white:Colors.black,
                 color: _isDark ? AppColors.appBarColor:AppColors.appDarkPurpleColor,
                 secondColorGradient: _isDark ? AppColors.appBarColor:AppColors.appDarkPurpleColor,

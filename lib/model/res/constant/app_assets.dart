@@ -2,6 +2,7 @@ class AppAssets{
   static const logoImage  = "assets/images/logo.webp";
   static const lightLogoImage  = "assets/images/light_logo.webp";
   static const mobileImage  = "assets/images/mobile.webp";
+  static const mobileBlackImage  = "assets/images/mobileBlack.webp";
   static const lockImage  = "assets/images/lock.webp";
   static const lockImageL  = "assets/images/lock_l.webp";
   static const homeMap  = "assets/images/home_map.webp";
@@ -15,12 +16,20 @@ class AppAssets{
   static const clock1  = "assets/images/clockl.webp";
   static const clock  = "assets/images/clock.webp";
   static const profileBg  = "assets/images/profile_bg.webp";
+  static const profileAppBarWhite  = "assets/images/profileAppBarWhite.webp";
   static const profileShadow  = "assets/images/profile_shadow.webp";
+  static const profileAppBarWhiteShadow  = "assets/images/profileAppBarWhiteShadow.png";
   static const permissionBg  = "assets/images/permission_bg.webp";
+  static const permissionBgW  = "assets/images/permissionBgW.webp";
   static const background  = "assets/images/background.webp";
   static const loginImage  = "assets/images/login_image.webp";
+  static const loginImageWhite  = "assets/images/loginLogoWhite.webp";
   static const loginBackground  = "assets/images/login_bg.webp";
+  static const loginBackgroundWhite  = "assets/images/loginBgWgite.webp";
   static const giftBG  = "assets/images/giftBg.webp";
+  static const giftBGWhite  = "assets/images/giftBgWhite.webp";
+  static const instagramBgWhite  = "assets/images/InstagramBgWhite.webp";
+  static const instagramBgBlack  = "assets/images/instagramBgBlack.webp";
 
 
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
+import 'package:unrespiro/model/res/widgets/app_text.dart.dart';
 
 import '../../../provider/theme/theme_provider.dart';
 import '../constant/app_assets.dart';
@@ -18,7 +19,7 @@ class CustomAlertDialog extends StatelessWidget {
         height: 500,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          color: _isDark? AppColors.appBarColor: AppColors.appPurpleColor,
+          color: _isDark? AppColors.appBarColor: Color(0xffF3ECEC),
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Column(
@@ -34,10 +35,11 @@ class CustomAlertDialog extends StatelessWidget {
                 ),
               ],
             ),
-            Text(
-              'Add aplications',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+            AppTextWidget(
+              text:
+              'Add Applications',
+              fontSize: 16, fontWeight: FontWeight.bold),
+            SizedBox(height: 20,),
             Expanded(
               child: RawScrollbar(
                 thumbVisibility: true,
@@ -50,9 +52,9 @@ class CustomAlertDialog extends StatelessWidget {
                     buildStack(context, 'Tiktok', AppAssets.tiktok,false),
                     buildStack(context, 'X', AppAssets.x,true),
                     buildStack(context, 'Pinterest', AppAssets.pinterest,true),
-                    buildStack(context, 'Nombre', AppAssets.pinterest,true),
-                    buildStack(context, 'Nombre', AppAssets.pinterest,true),
-                    buildStack(context, 'Nombre', AppAssets.pinterest,true),
+                    buildStack(context, 'Nombre', AppAssets.dummy,true),
+                    buildStack(context, 'Nombre', AppAssets.dummy,true),
+                    buildStack(context, 'Nombre', AppAssets.dummy,true),
                   ],
                 ),
               ),
@@ -75,19 +77,18 @@ class CustomAlertDialog extends StatelessWidget {
             width: Get.width * 0.6,
             padding: EdgeInsets.only(left: 70, top: 13, bottom: 13),
             decoration: BoxDecoration(
-              color: _isDark ? Colors.black54 : Color(0xFFEDE7F6),
+              color: _isDark ? Colors.black54 : Color(0xFFDDD3E6),
               borderRadius: BorderRadius.circular(30.0),
+              border: Border.all(color: _isDark ? Colors.black:Color(0xffDDD3E6))
             ),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  name,
-                  style: TextStyle(
+                AppTextWidget(
+                  text: name,
                     fontSize: 14.0,
                     color: _isDark ? Colors.white : Colors.black,
-                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 35.0),
@@ -100,8 +101,8 @@ class CustomAlertDialog extends StatelessWidget {
                     ),
                     child: CircleAvatar(
                       backgroundColor: isCheck ? Colors.green: Colors.white,
-                      radius: 15.0,
-                      child: Icon(Icons.check),
+                      radius: 12.0,
+                      child: Icon(Icons.check,size: 15,color: Colors.white,),
                     ),
                   ),
                 ),

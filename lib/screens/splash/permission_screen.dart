@@ -19,7 +19,7 @@ class PermissionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
-    return  Scaffold(
+    return Scaffold(
       // appBar: AppBar(
       //   title: Text('Flutter Theme Provider'),
       //   actions: [
@@ -34,45 +34,45 @@ class PermissionScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Container(
-                  height: 250,
-                  width: Get.width/1,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          AppAssets.permissionBg,
+            _isDark
+                ? Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Container(
+                        height: 250,
+                        width: Get.width / 1,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(
+                                AppAssets.permissionBg,
+                              ),
+                              fit: BoxFit.fill,
+                              opacity: 0.8),
                         ),
-                        fit: BoxFit.fill,
-                        opacity: 0.8
+                    
                     ),
-
                   )
+                : Container(
+              height: Get.height,
+                    decoration: BoxDecoration(
+                      color: Color(0xffEAE1E1),
 
-              ),
-            ),
+                    ),
+                  ),
             Positioned(
               top: 220,
-              child: Container(
-                  height: 250,
-                  width: Get.width/1,
+              child: _isDark ?Container(
+                  height: 220,
+                  width: Get.width / 1,
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          AppAssets.profileShadow,
-                        ),
-                        fit: BoxFit.fill,
-
+                      image: DecorationImage(
+                    image: AssetImage(
+                      AppAssets.profileShadow,
                     ),
-
-                  )
-
-              ),
+                    fit: BoxFit.fill,
+                  ))): Container(),
             ),
             Padding(
-              padding:  EdgeInsets.all(Get.width * 0.15),
+              padding: EdgeInsets.all(Get.width * 0.15),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,26 +80,50 @@ class PermissionScreen extends StatelessWidget {
                   SizedBox(
                       width: Get.width,
                       height: Get.width * 0.40,
-                      child: Image.asset(_isDark ?  AppAssets.lockImage : AppAssets.lockImageL ,fit: BoxFit.contain,)),
-                  SizedBox(height: Get.width * 0.10,),
-                  AppTextWidget(text: 'Permission Required',fontSize: 16.0,fontWeight: FontWeight.w700,),
-                  SizedBox(height: Get.width * 0.10,),
-                  const AppTextWidget(text: AppString.confirm_text,fontWeight: FontWeight.w400,fontSize: 12.0,textAlign: TextAlign.center,),
-                  SizedBox(height: Get.width * 0.10,),
-                  const AppTextWidget(text: AppString.permissiom_text,fontWeight:FontWeight.w400,fontSize: 14.0,textAlign: TextAlign.center,),
-                  SizedBox(height: Get.width * 0.12,),
+                      child: Image.asset(
+                        _isDark ? AppAssets.lockImage : AppAssets.lockImageL,
+                        fit: BoxFit.contain,
+                      )),
+                  SizedBox(
+                    height: Get.width * 0.10,
+                  ),
+                  AppTextWidget(
+                    text: 'Permission Required',
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.10,
+                  ),
+                  const AppTextWidget(
+                    text: AppString.confirm_text,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12.0,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.10,
+                  ),
+                  const AppTextWidget(
+                    text: AppString.permissiom_text,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14.0,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: Get.width * 0.12,
+                  ),
                   ButtonWidget(
                       text: "Permission",
                       fontWeight: FontWeight.w700,
-                      onClicked: (){
-                    Get.toNamed(RoutesName.mainScreen);
-                  }, width: Get.width * 0.40, height: 30.0),
-
+                      onClicked: () {
+                        Get.toNamed(RoutesName.mainScreen);
+                      },
+                      width: Get.width * 0.40,
+                      height: 30.0),
                 ],
               ),
             ),
-
-
           ],
         ),
       ),

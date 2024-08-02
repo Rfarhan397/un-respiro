@@ -25,7 +25,8 @@ class PlansScreen extends StatelessWidget {
           child: Column(
             children: [
               AppbarSimpleWidget(
-                text: 'Plans',
+                text: 'PLANS',
+                fontSize: 16,
                 icon: Icons.arrow_back_ios,
                 onTap: (){Get.back();},
                 textColor: Colors.black,

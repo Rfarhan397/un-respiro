@@ -48,13 +48,19 @@ class Instagram extends StatelessWidget {
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              gradient: _isDark
-                  ? const LinearGradient(colors: [Colors.black, Colors.black])
-                  : const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xffFF5000), Color(0xff8C90E7)],
-              ),
+              image: DecorationImage(
+                  image: AssetImage(
+                 _isDark? AppAssets.instagramBgBlack:
+                AppAssets.instagramBgWhite,),
+              fit: BoxFit.fill
+              )
+              // gradient: _isDark
+              //     ? const LinearGradient(colors: [Colors.black, Colors.black])
+              //     : const LinearGradient(
+              //   begin: Alignment.topCenter,
+              //   end: Alignment.bottomCenter,
+              //   colors: [Color(0xffFF5000), Color(0xff8C90E7)],
+              // ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,10 +73,15 @@ class Instagram extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.arrow_back_ios,size: 16,),
-                           SizedBox(width: Get.width/3.7),
+                          GestureDetector(
+                            onTap: (){Get.back();},
+                            child: Icon(Icons.arrow_back_ios,
+                              color: Colors.white
+                              ,size: 16,),
+                          ),
+                           SizedBox(width: Get.width/4.2),
                           AppTextWidget(
-                            text: 'Applications',
+                            text: 'APPLICATIONS',
                             fontSize: 18,
                             color: _isDark ? Colors.black : Colors.white,
                           ),
@@ -85,7 +96,7 @@ class Instagram extends StatelessWidget {
                             size: 18,
                             color: _isDark ? const Color(0xff363636) : Colors.white,
                           ),
-                          const SizedBox(width: 30),
+                          const SizedBox(width: 40),
                           Container(
                             height: 50,
                             decoration: BoxDecoration(
@@ -94,7 +105,7 @@ class Instagram extends StatelessWidget {
                             ),
                             child: Image.asset(AppAssets.insta),
                           ),
-                          const SizedBox(width: 30),
+                          const SizedBox(width: 40),
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 18,
