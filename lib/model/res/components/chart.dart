@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:unrespiro/model/res/constant/app_colors.dart';
@@ -37,8 +38,13 @@ class _CartesianChartState extends State<CartesianChart> {
       primaryYAxis: NumericAxis(
         labelStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.white), // Y-axis labels
       ),
-      title: ChartTitle(text: widget.title ?? "",
-        textStyle:  TextStyle(color: Colors.white,fontSize: 12), // Title text color
+      title: ChartTitle(
+        text: widget.title ?? "",
+         textStyle: GoogleFonts.nunitoSans(
+           color: Colors.white,
+           fontSize: 12,
+           fontWeight: FontWeight.w600,
+         )
       ),
       legend: const Legend(isVisible: false,
         textStyle: const TextStyle(color: Colors.transparent), // Title text color

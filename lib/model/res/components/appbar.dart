@@ -45,7 +45,7 @@ class AppbarWidget extends StatelessWidget {
       width: width ?? Get.width,
       padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(image!)),
+        image: DecorationImage(image: AssetImage(image ?? '')),
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(topRight),
               topLeft: Radius.circular(topLeft),

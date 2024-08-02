@@ -82,6 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // Image.asset(
                         //   _isDark? AppAssets.backIconL:
@@ -89,13 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         //   height: 30,
                         //   width: 30,
                         // ),
-                        SizedBox(
-                          width: Get.width / 2.5,
-                        ),
                         AppTextWidget(
                           text: 'HOME',
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w700,
                         ),
                       ],
                     ),
@@ -111,7 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     Center(
                       child: ButtonWidget(
                           text: "Ver métricas",
-                          textSize: 14,
+                          fontWeight: FontWeight.w700,
+                          textSize: 13,
                           onClicked: () {},
                           width: Get.width * 0.35,
                           height: 36.0),
@@ -180,28 +180,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Visibility(
                     visible: provider.isVisible,
                     child: Positioned(
-                      top: 10,
+                      top: -7,
                       left: 170,
                       child: Container(
                         width: Get.width / 2,
                         height: Get.height / 3.2,
                         decoration: BoxDecoration(
-                          color: _isDark
-                              ? Colors.grey.withOpacity(0.2)
-                              : Color(0xffDDD3E6).withOpacity(0.5),
+                          image: DecorationImage(image: AssetImage(AppAssets.giftBG)),
+                          // color: _isDark
+                          //     ? Colors.grey.withOpacity(0.2)
+                          //     : Color(0xffDDD3E6).withOpacity(0.5),5
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Stack(
                           children: <Widget>[
                             Positioned(
-                              top: 10,
-                              right: 10,
+                              top: 35,
+                              right: 15,
                               child: GestureDetector(
                                 onTap: () {
                                   provider.toggleVisibility();
                                 },
                                 child: Icon(
                                   Icons.close,
+                                  size: 18,
                                   color: _isDark ? Colors.white : Colors.black,
                                 ),
                               ),
@@ -209,9 +211,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
+                                SizedBox(height: 20,),
                                 Image.asset(
                                   AppAssets.giftIcon,
-                                  height: 45,
+                                  height: 30,
                                   color: _isDark
                                       ? AppColors.appYellowColor
                                       : AppColors.appRedColor,
@@ -220,45 +223,41 @@ class _HomeScreenState extends State<HomeScreen> {
                                 AppTextWidget(
                                   text: 'Win a gift',
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  fontSize: 12,
                                   color: _isDark ? Colors.white : Colors.black,
                                 ),
                                 SizedBox(height: 10),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0),
+                                      horizontal: 15.0),
                                   child: AppTextWidget(
                                     text:
                                         'Explanation of the reward system for users',
                                     textAlign: TextAlign.center,
-                                    fontSize: 12,
+                                    fontSize: 10,
                                     color:
                                         _isDark ? Colors.white : Colors.black,
                                   ),
                                 ),
                                 SizedBox(height: 10),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    fixedSize: Size(80, 20),
-                                    backgroundColor: _isDark
+                                Container(
+                                  height: 28,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                    color:  _isDark
                                         ? AppColors.appYellowColor
                                         : AppColors.appRedColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  onPressed: () {
-                                    // Add your onPressed code here!
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 6.0),
+                                  child:Padding(
+                                    padding: const EdgeInsets.all(3.0),
                                     child: AppTextWidget(
                                       text: 'Ir',
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ),
+                                  ) ,
                                 ),
                               ],
                             ),
@@ -292,19 +291,18 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
+                  AppTextWidget(
+                    text:
                     'Intentos: 12',
-                    style: TextStyle(
-                      fontSize: 10.0,
+                  fontWeight: FontWeight.w400,
+                      fontSize: 12.0,
                       color: _isDark ? Colors.white : Colors.black,
-                    ),
                   ),
-                  Text(
+                  AppTextWidget(
+                    text:
                     'Tiempo ahorrado: 30min.',
-                    style: TextStyle(
-                      fontSize: 10.0,
+                      fontSize: 11.0,
                       color: _isDark ? Colors.white : Colors.black,
-                    ),
                   ),
                 ],
               ),
@@ -324,11 +322,11 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CircleAvatar(
               backgroundColor:
                   _isDark ? AppColors.appBarColor : Color(0xFFEDE7F6),
-              radius: 25.0,
+              radius: 28.0,
               child: Image.asset(
                 image,
-                width: 35.0,
-                height: 35.0,
+                width: 45.0,
+                height: 45.0,
               ),
             ),
           ),

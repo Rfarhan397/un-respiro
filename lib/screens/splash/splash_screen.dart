@@ -51,12 +51,16 @@ class _SplashScreenState extends State<SplashScreen>  with SingleTickerProviderS
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const AppTextWidget(
-                text: "Un Respiro",
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
-                textAlign: TextAlign.center,
-              ),
+              // const AppTextWidget(
+              //   text: "Un Respiro",
+              //   fontSize: 28.0,
+              //   fontWeight: FontWeight.bold,
+              //   textAlign: TextAlign.center,
+              // ),
+             Padding(
+               padding: const EdgeInsets.symmetric(horizontal: 70.0,vertical: 20),
+               child: Image.asset(AppAssets.loginImage),
+             ),
              const SizedBox(height: 20.0,),
               RotationTransition(
                 turns: _controller,

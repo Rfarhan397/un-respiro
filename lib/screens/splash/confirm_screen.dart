@@ -70,15 +70,19 @@ class ConfirmScreen extends StatelessWidget {
                       height: Get.width * 0.8,
                       child: Image.asset(AppAssets.mobileImage,fit: BoxFit.contain,)),
                    SizedBox(height: Get.width * 0.12,),
-                  const AppTextWidget(text: AppString.confirm_text,fontSize: 14.0,textAlign: TextAlign.center,),
+                  const AppTextWidget(
+                    text: AppString.confirm_text,fontWeight: FontWeight.w400,fontSize: 14.0,textAlign: TextAlign.center,),
                    SizedBox(height: Get.width * 0.12,),
-                  ButtonWidget(text: "Login", onClicked: (){
+                  ButtonWidget(text: "Login",
+                      fontWeight: FontWeight.w700,
+                      onClicked: (){
                     Get.toNamed(RoutesName.loginScreen);
                   }, width: Get.width * 0.54, height: 40.0),
                   const SizedBox(height: 10.0,),
                   ButtonWidget(
 
                     text: "Register", onClicked: (){},
+                    fontWeight: FontWeight.w600,
                     width: Get.width * 0.54,
                     height: 40.0,
                     borderColor: _isDark ?AppColors.appYellowColor : AppColors.appRedColor,

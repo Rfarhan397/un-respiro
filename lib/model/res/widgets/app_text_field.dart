@@ -78,6 +78,7 @@ final bool obscureText;
           fillColor: isDarkMode ? darkGrey : Colors.orangeAccent.withOpacity(0.1),
           focusColor: Colors.blueGrey,
           hintStyle:  TextStyle(fontSize: 12.0,
+              fontWeight: FontWeight.w400,
               color: isDarkMode ? Colors.white:Colors.black),
         ),
       ),

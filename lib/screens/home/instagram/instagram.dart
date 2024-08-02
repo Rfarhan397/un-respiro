@@ -67,12 +67,8 @@ class Instagram extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Image.asset(
-                            _isDark ? AppAssets.backIconL : AppAssets.backIcon,
-                            height: 30,
-                            width: 30,
-                          ),
-                          const SizedBox(width: 100),
+                          Icon(Icons.arrow_back_ios,size: 16,),
+                           SizedBox(width: Get.width/3.7),
                           AppTextWidget(
                             text: 'Applications',
                             fontSize: 18,
@@ -89,16 +85,16 @@ class Instagram extends StatelessWidget {
                             size: 18,
                             color: _isDark ? const Color(0xff363636) : Colors.white,
                           ),
-                          const SizedBox(width: 20),
+                          const SizedBox(width: 30),
                           Container(
-                            height: 40,
+                            height: 50,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(25),
                               color: _isDark ? const Color(0xff111111) : Colors.white,
                             ),
                             child: Image.asset(AppAssets.insta),
                           ),
-                          const SizedBox(width: 20),
+                          const SizedBox(width: 30),
                           Icon(
                             Icons.arrow_forward_ios,
                             size: 18,
@@ -107,10 +103,16 @@ class Instagram extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      const AppTextWidget(
-                        text: 'Instagram',
-                        color: Colors.white,
+                      const Text(
+                         'Instagram',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+
                       ),
+                      const SizedBox(height: 20),
                       const CartesianChart(
                         title: 'Time spent on Instagram',
                         time: 'Time',
@@ -131,12 +133,12 @@ class Instagram extends StatelessWidget {
                     padding: const EdgeInsets.all(40.0),
                     child: Column(
                       children: [
-                        Text(
+                        AppTextWidget(
+                          text:
                           'Time Saved',
-                          style: TextStyle(
+                            fontSize: 14,
                             color: _isDark ? Colors.white : AppColors.appRedColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                            fontWeight: FontWeight.w600,
                         ),
                         const SizedBox(height: 10),
                         ListView(
@@ -154,29 +156,36 @@ class Instagram extends StatelessWidget {
 
                                 children: [
                                   SizedBox(
-                                    width: 75,
-                                    child: AppTextWidget(
-                                      text:
+                                    width: 84,
+                                    child: Text(
                                       '$day:',
-                                         textAlign: TextAlign.start,
-                                        color: _isDark
-                                            ? Colors.white
-                                            : AppColors.appRedColor,
+                                         style: TextStyle(
+                                           color: _isDark
+                                               ? Colors.white
+                                               : AppColors.appRedColor,
+                                           fontWeight: FontWeight.w500
+                                         ),
+                                      textAlign: TextAlign.start,
+                                      softWrap: false,
                                     ),
                                   ),
                                   Expanded(
                                     child: GradientProgressIndicator(
                                       value: totalMinutes.toDouble(), // Current minutes
                                       maxValue: totalMinutes / 240.0,
-                                      minHeight: 10,
+                                      minHeight: 9,
                                     ),
                                   ),
                                   const SizedBox(width: 10),
-                                  AppTextWidget(text:
+                                  Text(
                                     '${hours}h ${minutes}min',
-                                      color: _isDark
-                                          ? Color(0xff333333)
-                                          : AppColors.appPrimaryColor,
+                                      style: TextStyle(
+                                        color: _isDark
+                                            ? Color(0xff333333)
+                                            : AppColors.appPrimaryColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                      ),
                                   ),
                                 ],
                               ),
@@ -213,7 +222,9 @@ class Instagram extends StatelessWidget {
                                 ),
                                 SizedBox(width: 5),
                                 AppTextWidget(text: 'Eliminate',
-                                  color: Colors.white),
+                                  color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                ),
                               ],
                             ),
                           ),

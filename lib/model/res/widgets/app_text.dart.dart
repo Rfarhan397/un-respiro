@@ -73,7 +73,7 @@ class AppTextWidgetWithStaticColor extends StatelessWidget {
       text,
       textAlign: textAlign,
       softWrap: softWrap,
-      style: GoogleFonts.nunito(
+      style: GoogleFonts.nunitoSans(
         decoration: textDecoration,
           decorationColor: AppColors.appWhiteColor,
           fontWeight: fontWeight,

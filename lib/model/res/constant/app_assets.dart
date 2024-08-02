@@ -18,6 +18,9 @@ class AppAssets{
   static const profileShadow  = "assets/images/profile_shadow.webp";
   static const permissionBg  = "assets/images/permission_bg.webp";
   static const background  = "assets/images/background.webp";
+  static const loginImage  = "assets/images/login_image.webp";
+  static const loginBackground  = "assets/images/login_bg.webp";
+  static const giftBG  = "assets/images/giftBg.webp";
 
 
 

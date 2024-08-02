@@ -41,13 +41,8 @@ class LoginScreen extends StatelessWidget {
         _isDark? Container(
               margin: EdgeInsets.symmetric(vertical: 100,horizontal: 50),
               decoration: BoxDecoration(
-                gradient: RadialGradient(
-                  colors: [
-                    AppColors.appYellowColor.withOpacity(0.2),
-                    Colors.black.withOpacity(0.1),
-                   Colors.black,
-                  ],
-                )
+                image: DecorationImage(image: AssetImage(AppAssets.loginBackground)),
+
               ),
             ):
         Container(
@@ -72,13 +67,12 @@ class LoginScreen extends StatelessWidget {
                 children: [
 
 
-                  AppTextWidget(text: 'un respiro',fontSize: 24.0,fontWeight: FontWeight.bold,),
+                  Image.asset(AppAssets.loginImage,height: 50,width: Get.width/2,),
+                  //AppTextWidget(text: 'un respiro',fontSize: 24.0,fontWeight: FontWeight.bold,),
                   SizedBox(height: Get.width * 0.18,),
-              //                Image.asset('assets/images/appLogo.png',height: 50,width: Get.width/2,),
 
                   AppTextField(
                     hintText: "Mail",
-
                     controller: emailController,
                     validator: (email) {
                       if (emailController.text.isNotEmpty) {
@@ -110,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                         SizedBox(width: 5,),
                         Image.asset(AppAssets.google,height: 40,width: 40,),
                         SizedBox(width: 20,),
-                        AppTextWidget(text: 'Sign in with Google',fontSize: 14,)
+                        AppTextWidget(text: 'Sign in with Google',fontWeight: FontWeight.w400,fontSize: 14,)
                       ],
                     ),
                   ),
@@ -133,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                         color: _isDark ? Colors.white:Colors.black,
                         ),
                         SizedBox(width: 25,),
-                        AppTextWidget(text: 'Sign in with Apple',fontSize: 14,)
+                        AppTextWidget(text: 'Sign in with Apple',fontWeight: FontWeight.w400,fontSize: 14,)
                       ],
                     ),
                   ),
@@ -141,16 +135,20 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: Get.width * 0.070,),
                   ButtonWidget(
                       text: "Login",
+                      fontWeight: FontWeight.w700,
                       onClicked: (){
                     Get.toNamed(RoutesName.permissionScreen);
 
                   },
-                      width: Get.width * 0.70, height: 45.0),
-                  SizedBox(height: Get.width * 0.040,),
-                  AppTextWidget(
-                    text: 'Login without registering',
-                    textDecoration: TextDecoration.underline,
-                    fontSize: 12,
+                      width: Get.width * 0.70, height: 42.0),
+                  SizedBox(height: Get.width * 0.030,),
+                  Text(
+                   'Login without registering',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      decoration: TextDecoration.underline,
+                      fontSize: 12,
+                    ),
                   )
                 ],
               ),

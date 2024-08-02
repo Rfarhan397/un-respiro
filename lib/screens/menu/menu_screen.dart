@@ -84,43 +84,12 @@ class MenuScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 40.0),
                   child: Column(
                     children: [
-                      ListTile(
-                        onTap: (){
-                          Get.toNamed(RoutesName.profileScreen);
-                        },
-                        title: AppTextWidget(
-                          text: 'Profile',
-                          fontSize: 14,
-                          textAlign: TextAlign.start,
-                        ),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 16,),
-                      ),
-                      ListTile(
-                        onTap: (){},
-                        title: AppTextWidget(
-                            fontSize: 14,
-                            text: 'Adjusts', textAlign: TextAlign.start),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 16,),
-                      ),
-                      ListTile(
-                        onTap: (){
-                          Get.toNamed(RoutesName.planScreen);
-                        },
-                        title: AppTextWidget(
-                            fontSize: 14,
-                            text: 'Plans', textAlign: TextAlign.start),
-                        trailing: Icon(Icons.arrow_forward_ios,size: 16,),
-                      ),
-                      ListTile(
-                        onTap: (){},
-                        title: AppTextWidget(
-                            fontSize: 14,
-                            text: 'Copy invitation link to Unrespiro',
-                            textAlign: TextAlign.start),
-                        trailing: Icon(Icons.link,size: 16,),
-                      ),
+                      buildTile('Profile',() => Get.toNamed(RoutesName.profileScreen),Icons.arrow_forward_ios),
+                      buildTile('Adjusts',() {},Icons.arrow_forward_ios),
+                      buildTile('Plans',() => Get.toNamed(RoutesName.planScreen),Icons.arrow_forward_ios),
+                      buildTile('Copy invitation link to Unrespiro',() {},Icons.link),
                       SizedBox(
-                        height: 120,
+                        height: 150,
                       ),
                       Container(
                         height: 35,
@@ -217,6 +186,30 @@ class MenuScreen extends StatelessWidget {
           ],
         )),
       ),
+    );
+  }
+
+  Widget buildTile(String text, Function() onTap,IconData icon ) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            AppTextWidget(
+                              text: text,
+                              fontSize: 12,
+                              textAlign: TextAlign.start,
+                            ),
+                            // SizedBox(
+                            //   width: 8,
+                            // ),
+                            Icon(icon,size: 14,),
+                          ],
+                        ),
+                      ),
     );
   }
 }
