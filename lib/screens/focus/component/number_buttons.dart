@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:provider/provider.dart';
 
 import '../../../model/res/constant/app_colors.dart';
+import '../../../provider/theme/theme_provider.dart';
 
 class NumbersButton extends StatefulWidget {
    NumbersButton({super.key});
@@ -20,87 +22,101 @@ class _NumbersButtonState extends State<NumbersButton> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        SizedBox(height: 15,),
         Text(
           '$hours\h $minutes\m $seconds\s',
           style: TextStyle(
-            fontSize: 30.0,
-            color: Colors.white,
+            fontSize: 18.0,
+            color: _isDark ? Colors.white:Colors.black,
           ),
         ),
-        Container(
-            padding: EdgeInsets.only(right: 40,bottom:5,top: 20,left: 40,),
-            width: double.infinity,
-            height: Get.height / 2.6,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildNumber('1'),
-                        buildNumber('2'),
-                        buildNumber('3'),
-                      ]                                    ),
-                ),Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildNumber('4'),
-                        buildNumber('5'),
-                        buildNumber('6'),
-                      ]                                    ),
-                ),Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildNumber('7'),
-                        buildNumber('8'),
-                        buildNumber('9'),
-                      ]                                    ),
-                ),Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        buildNumber('0'),
-                        buildNumber('00'),
-                        buildDeleteButton(),
-                      ]                                    ),
-                ),
-              ],
-            )),
-        Container(
-          height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: AppColors.appYellowColor,),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Icon(
-              Icons.play_arrow_outlined,color: Colors.white,
-            ),
-          ),
-        )
+        Padding(
+          padding: const EdgeInsets.only(left: 28.0,right: 28,top: 10,bottom: 0),
+          child: Container(
+              padding: EdgeInsets.only(right: 30,bottom:5,top: 5,left: 40,),
+              width: double.infinity,
+              height: Get.height / 4.1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildNumber('1'),
+                          SizedBox(width: 25,),
+
+                          buildNumber('2'),
+                          SizedBox(width: 25,),
+
+                          buildNumber('3'),
+                        ]                                    ),
+                  ),Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildNumber('4'),
+                          SizedBox(width: 25,),
+
+                          buildNumber('5'),
+                          SizedBox(width: 25,),
+
+                          buildNumber('6'),
+                        ]                                    ),
+                  ),Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildNumber('7'),
+                          SizedBox(width: 25,),
+
+                          buildNumber('8'),
+                          SizedBox(width: 25,),
+
+                          buildNumber('9'),
+                        ]                                    ),
+                  ),Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          buildNumber('0'),
+                          SizedBox(width: 25,),
+                          buildNumber('00'),
+                          SizedBox(width: 25,),
+                          buildDeleteButton(),
+                        ]                                    ),
+                  ),
+                ],
+              )),
+        ),
+
       ],
     )
     ;
   }
 
   Container buildNumber(String text) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
     return Container(
-      height: 50,
-      width: 50,
+      height: 30,
+      width: 30,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: Colors.grey.shade900,
+        borderRadius: BorderRadius.circular(20),
+        color:  _isDark? Colors.grey.withOpacity(0.3):Color(0xffE1D7E9),
       ),
-      child: Center(child: Text(text)),
+      child: Center(child: Text(text,)),
     );
   }
 
@@ -121,15 +137,15 @@ class _NumbersButtonState extends State<NumbersButton> {
     return GestureDetector(
       onTap: deleteInput,
       child: Container(
-        height: 50,
-        width: 50,
+        height: 30,
+        width: 30,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          color: Colors.grey.shade900,
+          color: Colors.grey.withOpacity(0.3),
         ),
         child: Center(
           child: Icon(
-            Icons.backspace,size: 20,
+            Icons.backspace,size: 16,
             color: Colors.white,
           ),
         ),

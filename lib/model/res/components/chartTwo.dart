@@ -50,60 +50,69 @@ class _CartesianChartTwoState extends State<CartesianChartTwo> {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
     final yAxisFormatter = NumberFormat.compact(); // Use compact number formatting
-    return SfCartesianChart(
-      primaryXAxis: CategoryAxis(
-        interval: 1,
-        maximumLabels: 12,
-        axisLine: AxisLine(
-          color: Colors.grey
-        ),
-        labelStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.grey), // X-axis labels
-      ),
-      primaryYAxis: NumericAxis(
-        interval: 10,
-        minimum: 30,
-        maximum: 100,
-        axisLine: AxisLine(
+    return SizedBox(
+      height: 200,
+      width: 300,
+      child: SfCartesianChart(
+        margin: EdgeInsets.all(10), // Adjust margin
+        primaryXAxis: CategoryAxis(
+          interval: 1,
+          maximumLabels: 12,
+          majorTickLines: MajorTickLines(color: _isDark ? Color(0xff333333) : Colors.grey.withOpacity(0.4)),
+          majorGridLines: MajorGridLines(width: 1,color: Colors.grey.withOpacity(0.4)), // Remove Y-axis grid lines
+          axisLine: AxisLine(
             color: Colors.grey
+          ),
+          labelStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.grey), // X-axis labels
         ),
-        labelStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.grey),
-        numberFormat: yAxisFormatter,
+        primaryYAxis: NumericAxis(
+          interval: 12,
+          minimum: 30,
+          maximum: 100,
+          majorTickLines: MajorTickLines(color: _isDark ? Color(0xff333333) : Colors.grey.withOpacity(0.4)),
+          majorGridLines: MajorGridLines(width: 1,color: Colors.grey.withOpacity(0.4)), // Remove Y-axis grid lines
+          axisLine: AxisLine(
+              color: Colors.grey
+          ),
+          labelStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.grey),
+          numberFormat: yAxisFormatter,
+        ),
+        title: ChartTitle(text: widget.title ?? "",
+          textStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.white,fontSize: 12), // Title text color
+        ),
+        legend: const Legend(isVisible: false,
+          textStyle: const TextStyle(color: Colors.transparent), // Title text color
+        ),
+        tooltipBehavior: TooltipBehavior(enable: true,
+          textStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.white), // Title text color
+        ),
+        series: <CartesianSeries<dynamic, dynamic>>[
+          LineSeries<_SalesData, String>(
+            color:  AppColors.appYellowColor ,
+            width: 2, // Line width
+            dataSource: data,
+            xValueMapper: (_SalesData sales, _) => sales.year,
+            yValueMapper: (_SalesData sales, _) => sales.sales,
+            dataLabelSettings: DataLabelSettings(
+              isVisible: false,
+              textStyle: TextStyle(
+                color: _isDark ? Color(0xff333333) : Colors.black,
+              ), // Data label text color
+            ),),
+      LineSeries<_SalesData, String>(
+      color: Colors.blueAccent ,
+      width: 2, // Line width
+      dataSource: data2,
+      xValueMapper: (_SalesData sales, _) => sales.year,
+      yValueMapper: (_SalesData sales, _) => sales.sales,
+      dataLabelSettings: DataLabelSettings(
+      isVisible: false,
+      textStyle: TextStyle(
+      color: _isDark ? Color(0xff333333) : Colors.black,
+      ), // Data label text color
+      ),)
+        ],
       ),
-      title: ChartTitle(text: widget.title ?? "",
-        textStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.white,fontSize: 12), // Title text color
-      ),
-      legend: const Legend(isVisible: false,
-        textStyle: const TextStyle(color: Colors.transparent), // Title text color
-      ),
-      tooltipBehavior: TooltipBehavior(enable: true,
-        textStyle:  TextStyle(color: _isDark ? Color(0xff333333):Colors.white), // Title text color
-      ),
-      series: <CartesianSeries<dynamic, dynamic>>[
-        LineSeries<_SalesData, String>(
-          color:  AppColors.appYellowColor ,
-          width: 2, // Line width
-          dataSource: data,
-          xValueMapper: (_SalesData sales, _) => sales.year,
-          yValueMapper: (_SalesData sales, _) => sales.sales,
-          dataLabelSettings: DataLabelSettings(
-            isVisible: false,
-            textStyle: TextStyle(
-              color: _isDark ? Color(0xff333333) : Colors.black,
-            ), // Data label text color
-          ),),
-    LineSeries<_SalesData, String>(
-    color: Colors.blueAccent ,
-    width: 2, // Line width
-    dataSource: data2,
-    xValueMapper: (_SalesData sales, _) => sales.year,
-    yValueMapper: (_SalesData sales, _) => sales.sales,
-    dataLabelSettings: DataLabelSettings(
-    isVisible: false,
-    textStyle: TextStyle(
-    color: _isDark ? Color(0xff333333) : Colors.black,
-    ), // Data label text color
-    ),)
-      ],
     );
   }
 }

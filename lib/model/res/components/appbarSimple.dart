@@ -77,3 +77,68 @@ class AppbarSimpleWidget extends StatelessWidget {
     );
   }
 }
+class MoreAppbarSimpleWidget extends StatelessWidget {
+  final String text;
+
+  final Color color,textColor,secondColorGradient;
+  double bottomLeft,bottomRight,topRight,topLeft,fontSize;
+  double? width,height;
+  bool isGradient;
+  MoreAppbarSimpleWidget({super.key,
+    required this.text,
+
+    this.color = AppColors.appBarColor,
+    this.secondColorGradient = AppColors.appBarColor,
+    this.textColor = Colors.grey,
+    this.bottomLeft = 80,
+    this.bottomRight = 80,
+    this.topRight = 30,
+    this.topLeft = 30,
+    this.fontSize = 18,
+    this.isGradient = false,
+    this.height,
+    this.width,
+
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final _isDark = themeProvider.isDarkMode;
+
+    return Container(
+        height: height ?? 100,
+        width: width ?? Get.width,
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                isGradient ?  Colors.red : color,
+                isGradient ? Colors.yellow : secondColorGradient,
+              ],
+            ),
+
+            borderRadius: BorderRadius.only(
+                // topRight: Radius.circular(topRight),
+                // topLeft: Radius.circular(topLeft),
+
+                bottomLeft: Radius.circular(bottomLeft,),
+                bottomRight: Radius.circular(bottomRight))
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //SizedBox(width: Get.width/3.7,),
+              AppTextWidget(
+                fontWeight: FontWeight.bold,
+                color: textColor,
+                text:text ?? "",fontSize: fontSize,textAlign: TextAlign.center,),
+            ],
+          ),
+        )
+    );
+  }
+}

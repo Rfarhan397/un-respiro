@@ -20,138 +20,137 @@ class PlansScreen extends StatelessWidget {
     final _isDark = themeProvider.isDarkMode;
     final selectedPlan = planProvider.selectedPlan;
     return Scaffold(
-        body: SafeArea(
-            child: SingleChildScrollView(
-          child: Column(
-            children: [
-              AppbarSimpleWidget(
-                text: 'PLANS',
-                fontSize: 16,
-                icon: Icons.arrow_back_ios,
-                onTap: (){Get.back();},
-                textColor: Colors.black,
-                secondColorGradient: _isDark ?AppColors.appBarColor:AppColors.appDarkPurpleColor,
+        body: SingleChildScrollView(
+                  child: Column(
+        children: [
+          AppbarSimpleWidget(
+            text: 'PLANS',
+            fontSize: 16,
+            icon: Icons.arrow_back_ios,
+            onTap: (){Get.back();},
+            textColor: Colors.black,
+            secondColorGradient: _isDark ?AppColors.appBarColor:AppColors.appDarkPurpleColor,
+            color: _isDark
+                ? AppColors.appBarColor
+                : AppColors.appDarkPurpleColor,
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              height: Get.height / 2.3,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 color: _isDark
                     ? AppColors.appBarColor
                     : AppColors.appDarkPurpleColor,
               ),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  height: Get.height / 2.3,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: _isDark
-                        ? AppColors.appBarColor
-                        : AppColors.appDarkPurpleColor,
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 38.0),
-                        child: Column(
-                          children: [
-                            AppTextWidget(
-                              text: 'Free',
-                              color: _isDark
-                                  ? AppColors.appBarColor
-                                  : AppColors.appRedColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            SizedBox(height: 20),
-                            buildFreePaid(Icons.check, Colors.green,
-                                'breathing exercise'),
-                            buildFreePaid(
-                                Icons.check, Colors.green, 'Unlimited Apps'),
-                            buildFreePaid(
-                                Icons.close, Colors.red, 'Lorem ispum'),
-                            buildFreePaid(
-                                Icons.close, Colors.red, 'Lorem ispum'),
-                            buildFreePaid(
-                                Icons.close, Colors.red, 'Lorem ispum'),
-                          ],
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 38.0),
+                    child: Column(
+                      children: [
+                        AppTextWidget(
+                          text: 'Free',
+                          color: _isDark
+                              ? AppColors.appBarColor
+                              : AppColors.appRedColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
-                      )),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 40),
-                        width: 1,
-                        height: Get.height,
-                        color: Colors.grey,
-                      ),
-                      Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 38.0),
-                        child: Column(
-                          children: [
-                            AppTextWidget(
-                              text: 'Paid',
-                              fontSize: 18,
-                              color: _isDark
-                                  ? AppColors.appBarColor
-                                  : AppColors.appRedColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            SizedBox(height: 20),
-                            buildFreePaid(Icons.check, Colors.green,
-                                'breathing exercise'),
-                            buildFreePaid(
-                                Icons.check, Colors.green, 'Unlimited Apps'),
-                            buildFreePaid(
-                                Icons.close, Colors.red, 'Lorem ispum'),
-                            buildFreePaid(
-                                Icons.close, Colors.red, 'Lorem ispum'),
-                            buildFreePaid(
-                                Icons.close, Colors.red, 'Lorem ispum'),
-                          ],
-                        ),
-                      )),
-                    ],
+                        SizedBox(height: 20),
+                        buildFreePaid(Icons.check, Colors.green,
+                            'breathing exercise'),
+                        buildFreePaid(
+                            Icons.check, Colors.green, 'Unlimited Apps'),
+                        buildFreePaid(
+                            Icons.close, Colors.red, 'Lorem ispum'),
+                        buildFreePaid(
+                            Icons.close, Colors.red, 'Lorem ispum'),
+                        buildFreePaid(
+                            Icons.close, Colors.red, 'Lorem ispum'),
+                      ],
+                    ),
+                  )),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 40),
+                    width: 1,
+                    height: Get.height,
+                    color: Colors.grey,
                   ),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 50),
-                child: Row(
-                  children: [
-                    _buildPlanContainer(
-                      context,
-                      planProvider,
-                      selectedPlan,
-                      1,
-                      'Monthly Plan',
-                      '\$00.00',
-                      'Per month',
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 38.0),
+                    child: Column(
+                      children: [
+                        AppTextWidget(
+                          text: 'Paid',
+                          fontSize: 18,
+                          color: _isDark
+                              ? AppColors.appBarColor
+                              : AppColors.appRedColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        SizedBox(height: 20),
+                        buildFreePaid(Icons.check, Colors.green,
+                            'breathing exercise'),
+                        buildFreePaid(
+                            Icons.check, Colors.green, 'Unlimited Apps'),
+                        buildFreePaid(
+                            Icons.close, Colors.red, 'Lorem ispum'),
+                        buildFreePaid(
+                            Icons.close, Colors.red, 'Lorem ispum'),
+                        buildFreePaid(
+                            Icons.close, Colors.red, 'Lorem ispum'),
+                      ],
                     ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    _buildPlanContainer(
-                      context,
-                      planProvider,
-                      selectedPlan,
-                      2,
-                      'Yearly Plan',
-                      '\$00.00',
-                      'Per year',
-                    ),
-                  ],
-                ),
+                  )),
+                ],
               ),
-              SizedBox(
-                height: 30,
-              ),
-              ButtonWidget(
-                  text: 'Select', onClicked: () {}, width: 150, height: 40),
-              SizedBox(height: 50,),
-            ],
+            ),
           ),
-        )));
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 50),
+            child: Row(
+              children: [
+                _buildPlanContainer(
+                  context,
+                  planProvider,
+                  selectedPlan,
+                  1,
+                  'Monthly Plan',
+                  '\$00.00',
+                  'Per month',
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                _buildPlanContainer(
+                  context,
+                  planProvider,
+                  selectedPlan,
+                  2,
+                  'Yearly Plan',
+                  '\$00.00',
+                  'Per year',
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          ButtonWidget(
+              text: 'Select', onClicked: () {}, width: 150, height: 40),
+          SizedBox(height: 50,),
+        ],
+                  ),
+                ));
   }
 
   Padding buildFreePaid(IconData icon, var color, String text) => Padding(

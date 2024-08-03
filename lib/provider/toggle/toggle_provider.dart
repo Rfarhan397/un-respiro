@@ -1,12 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-class ToggleModel extends ChangeNotifier {
-  bool _isChronometer = true;
+class ToggleModel with ChangeNotifier {
+  static final ToggleModel _instance = ToggleModel._internal();
 
-  bool get isCronometer => _isChronometer;
+  factory ToggleModel() {
+    return _instance;
+  }
+
+  ToggleModel._internal();
+
+  bool _isCronometer = false;
+
+  bool get isCronometer => _isCronometer;
 
   void toggle() {
-    _isChronometer = !_isChronometer;
+    _isCronometer = !_isCronometer;
     notifyListeners();
   }
 }

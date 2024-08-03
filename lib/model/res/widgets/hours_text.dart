@@ -34,7 +34,7 @@ class HoursText extends StatelessWidget {
                 children: <InlineSpan>[
                   TextSpan(
                     text: text4,
-                    style: TextStyle(fontSize: 12,
+                    style: TextStyle(fontSize: 10,
                       color: _isDark
                           ? AppColors.appYellowColor.withOpacity(0.5)
                           : AppColors.appRedColor,

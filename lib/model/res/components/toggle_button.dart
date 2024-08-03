@@ -12,7 +12,7 @@ class ToggleButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
-    var toggleModel = Provider.of<ToggleModel>(context);
+    var toggleModel = Provider.of<ToggleModel>(context,listen: false);
     return SizedBox(
       width: Get.width * 0.6,
       child: Row(

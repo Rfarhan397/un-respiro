@@ -31,101 +31,86 @@ class PermissionScreen extends StatelessWidget {
       //     ),
       //   ],
       // ),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            _isDark
-                ? Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Container(
-                        height: 250,
-                        width: Get.width / 1,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                AppAssets.permissionBg,
-                              ),
-                              fit: BoxFit.fill,
-                              opacity: 0.8),
-                        ),
-                    
-                    ),
-                  )
-                : Container(
-              height: Get.height,
-                    decoration: BoxDecoration(
-                      color: Color(0xffEAE1E1),
+      body: Stack(
+        children: [
+          _isDark
+              ? Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                      height:Get.height,
+                      width: Get.width ,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                              AppAssets.permissionBackground,
+                            ),
+                            fit: BoxFit.fill,
+                            opacity: 0.8),
+                      ),
 
-                    ),
                   ),
-            Positioned(
-              top: 220,
-              child: _isDark ?Container(
-                  height: 220,
-                  width: Get.width / 1,
+                )
+              : Container(
+            height: Get.height,
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                    image: AssetImage(
-                      AppAssets.profileShadow,
-                    ),
-                    fit: BoxFit.fill,
-                  ))): Container(),
-            ),
-            Padding(
-              padding: EdgeInsets.all(Get.width * 0.15),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                      width: Get.width,
-                      height: Get.width * 0.40,
-                      child: Image.asset(
-                        _isDark ? AppAssets.lockImage : AppAssets.lockImageL,
-                        fit: BoxFit.contain,
-                      )),
-                  SizedBox(
-                    height: Get.width * 0.10,
+                    color: Color(0xffEAE1E1),
+
                   ),
-                  AppTextWidget(
-                    text: 'Permission Required',
-                    fontSize: 16.0,
+                ),
+          Padding(
+            padding: EdgeInsets.all(Get.width * 0.15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: Get.width,
+                    height: Get.width * 0.40,
+                    child: Image.asset(
+                      _isDark ? AppAssets.lockImage : AppAssets.lockImageL,
+                      fit: BoxFit.contain,
+                    )),
+                SizedBox(
+                  height: Get.width * 0.10,
+                ),
+                AppTextWidget(
+                  text: 'Permission Required',
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w700,
+                ),
+                SizedBox(
+                  height: Get.width * 0.10,
+                ),
+                const AppTextWidget(
+                  text: AppString.confirm_text,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12.0,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: Get.width * 0.10,
+                ),
+                const AppTextWidget(
+                  text: AppString.permissiom_text,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14.0,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: Get.width * 0.12,
+                ),
+                ButtonWidget(
+                    text: "Permission",
                     fontWeight: FontWeight.w700,
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.10,
-                  ),
-                  const AppTextWidget(
-                    text: AppString.confirm_text,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12.0,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.10,
-                  ),
-                  const AppTextWidget(
-                    text: AppString.permissiom_text,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14.0,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: Get.width * 0.12,
-                  ),
-                  ButtonWidget(
-                      text: "Permission",
-                      fontWeight: FontWeight.w700,
-                      onClicked: () {
-                        Get.toNamed(RoutesName.mainScreen);
-                      },
-                      width: Get.width * 0.40,
-                      height: 30.0),
-                ],
-              ),
+                    onClicked: () {
+                      Get.offAndToNamed(RoutesName.mainScreen);
+                    },
+                    width: Get.width * 0.40,
+                    height: 30.0),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

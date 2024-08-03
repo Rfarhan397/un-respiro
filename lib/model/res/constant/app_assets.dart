@@ -30,6 +30,8 @@ class AppAssets{
   static const giftBGWhite  = "assets/images/giftBgWhite.webp";
   static const instagramBgWhite  = "assets/images/InstagramBgWhite.webp";
   static const instagramBgBlack  = "assets/images/instagramBgBlack.webp";
+  static const moreAlertBox  = "assets/images/moreAlertBox.webp";
+  static const permissionBackground  = "assets/images/PERMISOS.webp";
 
 
 

@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,9 @@ import 'package:unrespiro/screens/focus/component/number_buttons.dart';
 import '../../model/res/components/toggle_button.dart';
 import '../../model/res/constant/app_colors.dart';
 import '../../model/res/widgets/app_text.dart.dart';
+import '../../model/toggle_model.dart';
 import '../../provider/theme/theme_provider.dart';
+import '../../provider/toggle/toggle_provider.dart';
 import 'component/clock.dart';
 
 class FocusScreenO extends StatefulWidget {
@@ -26,113 +28,131 @@ class _FocusScreenOState extends State<FocusScreenO> {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final _isDark = themeProvider.isDarkMode;
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: _isDark ?  AppColors.appBarColor:AppColors.appPurpleColor ,
-          title: AppTextWidget(
-            text: 'FOCUS MODE',
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-          centerTitle: true,
-          actions: [
-            Switch(
-              value: themeProvider.isDarkMode,
-              onChanged: (value) {
-                themeProvider.toggleTheme();
-              },
-            ),
-          ],
+    log("message:: ${ToggleModel().isCronometer}");
+
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        foregroundColor: _isDark ?AppColors.appBarColor:AppColors.appPurpleColor,
+        automaticallyImplyLeading: false,
+        surfaceTintColor: _isDark ?AppColors.appBarColor:AppColors.appPurpleColor ,
+        backgroundColor: _isDark ?AppColors.appBarColor:AppColors.appPurpleColor,
+        //backgroundColor: _isDark ?  AppColors.appBarColor:AppColors.appPurpleColor ,
+        title: AppTextWidget(
+          text: 'FOCUS MODE',
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(color: _isDark ? Colors.black : Colors.white),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: Get.height / 2.4,
-                  decoration: BoxDecoration(
-                    color:
-                        _isDark ? Color(0xff111111) : AppColors.appPurpleColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(250),
-                      bottomRight: Radius.circular(250),
-                    ),
+        centerTitle: true,
+        // actions: [
+        //   Switch(
+        //     value: themeProvider.isDarkMode,
+        //     onChanged: (value) {
+        //       themeProvider.toggleTheme();
+        //     },
+        //   ),
+        //],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(color: _isDark ? Colors.black : Colors.white),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: Get.height / 2.4,
+                decoration: BoxDecoration(
+                  color:
+                      _isDark ? Color(0xff111111) : AppColors.appPurpleColor,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(250),
+                    bottomRight: Radius.circular(250),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 40.0, vertical: 10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ToggleButton(),
-                        Image.asset(
-                          _isDark ? AppAssets.clock:AppAssets.clock1,
-                          height: 200,),
-                        // SizedBox(height: 50,),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40.0, vertical: 10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ToggleButton(),
+                  Consumer<ToggleModel>(
+                   builder: (context,provider, child){
+                     return provider.isCronometer ? Image.asset(
+                       _isDark ? AppAssets.clock:AppAssets.clock1,
+                       height: 200,) : NumbersButton();
+                   },
+                  ),
+                      Consumer<ToggleModel>(builder: (context,provider, child){
+                        return provider.isCronometer ?
                         ButtonWidget(text: 'Activate',
                             textSize: 10.0,
                             radius: 30,
-                            onClicked: (){}, width: 80, height: 25),
-                        // //ClockScreen(),
-                        // //NumbersButton(),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(
-                          child: AppTextWidget(
-                        text: 'Registered applications',
-                        fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: _isDark ? Colors.white: Colors.black,
-                      )),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              buildLogo(AppAssets.insta, true, '00:15:01'),
-                              buildLogo(AppAssets.tiktok, true, '00:15:01'),
-                              buildLogo(AppAssets.x, true, '00:15:01'),
-                              buildLogo(AppAssets.pinterest, true, '00:15:01'),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              buildLogo(AppAssets.dummy, false, '00:15:01'),
-                              buildLogo(AppAssets.dummy, false, '00:15:01'),
-                              buildLogo(AppAssets.dummy, false, '00:15:01'),
-                              buildLogo(AppAssets.dummy, false, '00:15:01'),
-                            ],
-                          ),
-                        ],
-                      )
+                            onClicked: (){}, width: 80, height: 25):
+                        IconButtonWidget(
+                            icon: Icons.play_arrow_outlined,
+                            iconSize: 25.0,
+                            radius: 30,
+                            onClicked: (){}, width: 30, height: 30);
+                      }),
+
+                      // SizedBox(height: 50,),
+
+                      // //ClockScreen(),
+                      // //NumbersButton(),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
-              ],
-            ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(
+                        child: AppTextWidget(
+                      text: 'Registered applications',
+                      fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: _isDark ? Colors.white: Colors.black,
+                    )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            buildLogo(AppAssets.insta, true, '00:15:01'),
+                            buildLogo(AppAssets.tiktok, true, '00:15:01'),
+                            buildLogo(AppAssets.x, true, '00:15:01'),
+                            buildLogo(AppAssets.pinterest, true, '00:15:01'),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            buildLogo(AppAssets.dummy, false, '00:15:01'),
+                            buildLogo(AppAssets.dummy, false, '00:15:01'),
+                            buildLogo(AppAssets.dummy, false, '00:15:01'),
+                            buildLogo(AppAssets.dummy, false, '00:15:01'),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
         ),
       ),

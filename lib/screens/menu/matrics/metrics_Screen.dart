@@ -31,7 +31,7 @@ class MetricsScreen extends StatelessWidget {
     final _isDark = themeProvider.isDarkMode;
     final progressData = context.watch<ProgressModel>().progress;
     return Scaffold(
-      body: SafeArea(child: Container(
+      body: Container(
         height: Get.height,
         child: SingleChildScrollView(
           child: Column(
@@ -72,6 +72,7 @@ class MetricsScreen extends StatelessWidget {
                               AppTextWidget(
                                 text:
                                 'Percentage of usage of your applications:',
+                                fontWeight: FontWeight.w500,
                                 color: _isDark ? Colors.white : AppColors.appRedColor,
                                 fontSize: 12,
                                 textAlign: TextAlign.start,
@@ -80,6 +81,7 @@ class MetricsScreen extends StatelessWidget {
                               AppTextWidget(
                                 text:
                                 'Date of first installation:',
+                                fontWeight: FontWeight.w500,
                                 color: _isDark ? Colors.black:Colors.black,
                                 fontSize: 12,textAlign: TextAlign.start,),
                               SizedBox(height: 5),
@@ -92,53 +94,64 @@ class MetricsScreen extends StatelessWidget {
                           ),
                         ),
                         CircularIndicatorWithEndCircle(percentage: 80,)
-                       
+
                       ],
                     ),
                     SizedBox(height: 40,),
                     AppTextWidget(text: 'Matrics',
                       color: _isDark ? Colors.white: AppColors.appRedColor,
-                      fontWeight: FontWeight.bold,fontSize: 14,),
+                      fontWeight: FontWeight.w500,fontSize: 14,),
                     buildDropDown(context),
                     CartesianChartTwo(title: '',time: '',),
                     SizedBox(height: 20,),
-                    Row(
-                      children: [
-                        Container(
-                          height: 20,
-                          width: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.blue,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 15,
+                            width: 15,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.blue,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 10,),
-                        AppTextWidgetWithStaticColor(
-                            text: 'Time of use since the installation of Unrespiro',
-                          fontSize: 12,
-                          softWrap: true,
-                          color: Colors.grey,
-                        ),
-                      ],
+                          SizedBox(width: 10,),
+                          Text(
+                              'Time of use since the installation of Unrespiro',
+                              style:
+                              TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              )
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 10,),
-                    Row(
-                      children: [
-                        Container(
-                          height: 20,
-                          width: 20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.appYellowColor,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 15,
+                            width: 15,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: AppColors.appYellowColor,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 10,),
-                        AppTextWidgetWithStaticColor(
-                          text: 'Time of use before Unrespiro',
-                          fontSize: 12,
-                        color: Colors.grey
-                        )
-                      ],
+                          SizedBox(width: 10,),
+                          Text(
+                             'Time of use before Unrespiro',
+                            style:
+                            TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                            )
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(height: 30,),
                     Row(
@@ -146,55 +159,62 @@ class MetricsScreen extends StatelessWidget {
                       children: [
                         AppTextWidget(text: 'Time saved',
                           color: _isDark ? Colors.white: AppColors.appRedColor,
-                          fontSize: 14,fontWeight: FontWeight.bold,),
+                          fontSize: 14,fontWeight: FontWeight.w500,),
                         buildDropDown(context),
                       ],
                     ),
                     SizedBox(height: 30,),
-                    ListView(
-                      shrinkWrap: true,
-                      children: progressData.keys.map((day) {
-                        final duration = progressData[day]!;
-                        final hours = duration.inHours;
-                        final minutes = duration.inMinutes % 60;
-                        final totalMinutes = duration.inMinutes;
-
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 90,
-                                child: Text(
-                                  '$day:',
-                                  style: TextStyle(fontSize: 14,color: _isDark ? Colors.white: Colors.black,),
-                                ),
-                              ),
-                              Expanded(
-                                child:  GradientProgressIndicator(
-                                  value: totalMinutes / 80.0,
-                                  minHeight: 12,
-                                ),
-                              ),
-                              SizedBox(width: 10),
-                              Text('${hours}h ${minutes}min',
-                                style: TextStyle(
-                                  color: _isDark ? Colors.grey: Colors.black.withOpacity(0.8),),
-                              ),
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    ),
+                    buildRow(_isDark, 'Monday:', '30min.'),
+                    buildRow(_isDark, 'Tuesday:', '45min.'),
+                    buildRow(_isDark, 'Wednesday:', '27min.'),
+                    buildRow(_isDark, 'Thursday:', '1hr 10min.'),
+                    buildRow(_isDark, 'Friday:', '1hr 30min.'),
+                    buildRow(_isDark, 'Saturday:', '40min.'),
+                    buildRow(_isDark, 'Sunday:', '10min.'),
+                    // ListView(
+                    //   shrinkWrap: true,
+                    //   children: progressData.keys.map((day) {
+                    //     final duration = progressData[day]!;
+                    //     final hours = duration.inHours;
+                    //     final minutes = duration.inMinutes % 60;
+                    //     final totalMinutes = duration.inMinutes;
+                    //
+                    //     return Padding(
+                    //       padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    //       child: Row(
+                    //         children: [
+                    //           SizedBox(
+                    //             width: 90,
+                    //             child: Text(
+                    //               '$day:',
+                    //               style: TextStyle(fontSize: 14,color: _isDark ? Colors.white: Colors.black,),
+                    //             ),
+                    //           ),
+                    //           Expanded(
+                    //             child:  GradientProgressIndicator(
+                    //               value: totalMinutes / 80.0,
+                    //               minHeight: 12,
+                    //             ),
+                    //           ),
+                    //           SizedBox(width: 10),
+                    //           Text('${hours}h ${minutes}min',
+                    //             style: TextStyle(
+                    //               color: _isDark ? Colors.grey: Colors.black.withOpacity(0.8),),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     );
+                    //   }).toList(),
+                    // ),
 
                   ],
                 ),
               ),
-          
+
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 
@@ -369,6 +389,58 @@ class MetricsScreen extends StatelessWidget {
            ),
          );
        },
+     );
+   }
+   Widget buildRow(bool _isDark, day, time) {
+     return Padding(
+       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 10),
+       child: Row(
+         crossAxisAlignment: CrossAxisAlignment.center,
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         children: [
+           Expanded(
+             flex: 1,
+             child: Text(
+               day,
+               style: TextStyle(
+                   fontSize: 12,
+                   color: _isDark ? Colors.white: Colors.black,
+                   fontWeight: FontWeight.w500),
+               textAlign: TextAlign.start,
+               softWrap: false,
+             ),
+           ),
+           SizedBox(
+             width: 5,
+           ),
+           Expanded(
+             flex: 2,
+             child: Container(
+               width: 100,
+               child: GradientProgressIndicator(
+                 value: 20, // Current minutes
+                 maxValue: 20 / 240.0,
+                 minHeight: 8,
+               ),
+             ),
+           ),
+           SizedBox(
+             width: 10,
+           ),
+           Expanded(
+             flex: 1,
+             child: Text(
+               time,
+               style: TextStyle(
+                 fontSize: 12,
+                 color: _isDark ? Colors.grey: Colors.black.withOpacity(0.8),
+               ),
+               textAlign: TextAlign.start,
+               softWrap: false,
+             ),
+           ),
+         ],
+       ),
      );
    }
 
